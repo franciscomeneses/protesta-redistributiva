@@ -1,0 +1,16 @@
+---
+title: "Protesta redistributiva"
+#csl: "input/bib/apa6.csl"
+#bibliography: "input/bib/zlibrary.bib"
+#author: " "
+output:
+    bookdown::html_document2:
+            smart: false
+            number_sections: false
+---
+
+Last update: `r format(Sys.time(), "%A %d %B %Y %X")`
+
+```{r, child="readme.md", eval=TRUE}
+
+```
