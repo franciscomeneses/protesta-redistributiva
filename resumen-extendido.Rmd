@@ -1,0 +1,313 @@
+---
+title: "Repensando la relación entre desigualdad y ciudadanía desde la economía moral"
+author: "Francisco Meneses, Juan Carlos Castillo, Julio Iturra, Martin Venegas"
+date: "29-04-2021"
+output:
+  bookdown::pdf_document2:
+    template: null
+    toc: no
+    keep_tex: no
+subtitle: El rol de la crítica a la desigualdad en la justificación de la protesta disruptiva
+bibliography: input/bib/redistribucion-protestas.bib
+csl: input/bib/apa.csl
+header-includes:
+- \usepackage{caption}
+- \captionsetup[figure, table]{labelfont={bf},labelformat={default},labelsep=period}
+- \usepackage{graphicx}
+- \usepackage{float}
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+geometry: "left=1cm,right=1cm,top=2cm,bottom=2cm" # márgenes de página
+linestretch: '1'
+link-citations: yes
+linkcolor: blue
+fontsize: 12pt
+font-family: Times New Roman
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+```
+
+
+# Sensación de injusticia y protesta con violencia: 
+
+La advertencia de sociólogos como Manuel Garretón se ha transformado en una realidad evidenciable:  _La desigualdad amenaza con socavar la democracia_ [@garreton_ciencias_2014; @currie_desigualdad_2017; @sandel_tirania_2021]. Las consecuencias de la desigualdad en la política han mutado en Chile durante los últimos años. La apatía política de jóvenes y sectores vulnerables se transforma en una creciente politización [@paletaraneda_tiempos_2015]. Esta politización tiene rasgos activistas, fuera de lo institucional [@munoz-tamayo_jovenes_2019] y, en algunas ocasiones, posee rasgos de acción directa o disruptiva [@ale_Saltar_2021]. Una cultura de la participación basada en el enfrentamiento violento no es propicia para mantener la democracia, por ello es menester preguntarse ¿Qué es lo que motiva a que algunos jóvenes legitimen (y otros no)  actos violentos de protesta? Esta investigación propone que es la crítica a la desigualdad la que fomenta la legitimidad de dichos actos.
+
+Se ha evaluado la relación objetiva entre desigualdad y participación [@solt_Does_2010;@lipset_Political_1983]. Algunas teorías sobre participación se ven contravenidas por las acciones disruptivas de los jóvenes populares. Mientras que la teoría de la desigualdad en la voz política propone que la participación depende de los recursos de las personas [@miranda_Desigualdad_2018], la evidencia en Chile muestra que los participantes de la revuelta eran de variados grupos sociales, siendo más respaldados los actos disruptivos por jóvenes de menos recursos [@miranda_Cambios_2021]. Un modo de repensar la relación entre desigualdad y participación política, en especial sobre la disruptiva, es considerando las criticas subjetivas sobre la desigualdad.
+
+En el campo de la justicia distributiva [@jasso_New_1980], se ha señalado que las críticas a la desigualdad están influidas conjuntamente [@sudo_Two_2020] por el interés personal [@wong_Median_2017] y por el contexto tanto material [@solt_Economic_2016] como moral [@legarrec_Distributive_2015]. Aunque se podría pensar que lugares con más diferencias económicas generan más conflicto contra la desigualdad [@newman_False_2015], se ha evidenciado que lugares más desiguales, poseen más consenso sobre la legitimidad de la desigualdad [@solt_Economic_2016], pues la desigualdad requiere procesos de justificación. No obstante, también la evidencia señala que la crítica a la desigualdad y las preferencias redistributivas se concentran en sectores desventajados [@meltzer_Tests_1983; @gugushvili_Intergenerational_2016].  En base a ello, se podría pensar, dada la desigualdad chilena, que existe una legitimidad en la misma excepto en sectores más vulnerables, no obstante, la evidencia señala que, aunque Chile no es el país más desigual, es uno de los países que más odia su desigualdad [@maldonado_demanda_2019], siendo este repudio bastante transversal.
+
+Considerando estas visiones críticas a la desigualdad se propone que estas fomentan la justificación de acciones disruptivas, existiendo evidencia para sostener una relación entre sensaciones de injusticia y ciudadania [@sabbagh_Spheres_2006]. @easterbrook_social_2021 propone que la desigualdad puede generar apatía política en sectores vulnerables, pero también en ciertos casos puede fomentar deseos de insurrección. Esta evidencia es consistente con el estudio de @hooghe_comparative_2016 quien destaca que en países más desiguales y con menor garantía de derechos, los jóvenes asocian la idea de buen ciudadano a alguien crítico y dispuesto a protestar por sus derechos, mientras que en países acomodados la idea de ciudadanía se asocia al respeto por el orden y las leyes.  De ambas evidencias se puede pensar que personas de menor nivel socioeconómico y con mayor crítica hacia la desigualdad son más proclives a una visión activa de ciudadanía e incluso a sentimientos de insubordinación, en vista de lo anterior se propone como hipótesis que ($H$) jóvenes con una mayor critica a la desigualdad justifican en mayor medida acciones de protesta disruptiva.
+
+
+# Metodología
+
+Para abordar esta investigación se utilizará la encuesta PACES producida en el marco del Fondecyt n°1181239, la cual encuestó a 1483 estudiantes de 64 colegios en tres grandes regiones del país. Las variables principales del estudio serán la justificación de la protesta disruptiva y la crítica a la desigualdad de los estudiantes. La operacionalización se expone en la tabla N°1.  Se decidió utilizar como metodología análisis multinivel dada la estructura jerárquica de la muestra. En la Tabla N°1 se expone las variables de este estudio, las cuales serán estimadas con puntuaciones factoriales con los indicadores señalados en la misma tabla.
+
+
+
+```{r echo = FALSE}
+library(dplyr)
+library(kableExtra)
+library(htmlwidgets)
+cap1 <- "Variables dependientes."
+# if (knitr::is_html_output()) {tb <- table_nums("tb",cap)} else {tb <- cap}
+```
+
+```{r echo = FALSE}
+
+tab01 <- read.csv(file = "input/table01_r.csv",header = 1,sep = ";",encoding = "UTF-8")
+colnames(tab01) <- NULL
+
+cnames <- c("Dimensión", "Indicador","Pregunta", "Categorías de respuesta")
+cap1 <- "Variables dependientes."
+kable(tab01,"latex",booktabs = T, linesep = "",col.names = cnames, caption = cap1) %>%
+  kable_styling(
+    full_width = T,
+    latex_options = c("hold_position"),
+    position = "center",
+    font_size = 10,
+    bootstrap_options=c("striped", "bordered")) %>%
+  column_spec(column = 1, width = "2 cm", ) %>%
+  column_spec(column = 2,width = "3 cm") %>%
+  column_spec(column = 3,width = "5 cm") %>%
+  collapse_rows(columns = 1:3,valign = "middle")
+```
+
+\newpage
+
+# Análisis
+
+
+En el siguiente grafico se expone la preferencia redistributiva de quienes siempre (grafico de la izquierda) y nunca (derecha) justificarían un corte de calle. Se puede observar que quienes justifican los cortes poseen una mayor preferencia por disminuir la desigualdad. 
+
+```{r echo=FALSE}
+
+pacman::p_load(dplyr,ggplot2,sjPlot,tidyverse,sjlabelled)
+load(file = "input/data/est.RData")
+
+est_desc  = est %>% filter(P35B==4) %>% dplyr::select(RBD, pond_estudiante_reg_dep_tens, 
+                                pond_esc_reg_dep_tens, 
+                                juicio_desigualdad = P25A,
+                                redistriv =P25B,
+                                cortes = P35B,
+                                tomas= P35C)
+
+
+est_desc$juicio_desigualdad<-as.factor(est_desc$juicio_desigualdad) ## ojo
+est_desc$redistriv<-as.factor(est_desc$redistriv) ## ojo
+est_desc$cortes<-as.factor(est_desc$cortes)  ## ojo
+est_desc$tomas<-as.factor(est_desc$tomas)  ## ojo
+
+est_desc$juicio_desigualdad <- set_na(est_desc$juicio_desigualdad, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+est_desc$redistriv <- set_na(est_desc$redistriv, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+est_desc$cortes <- set_na(est_desc$cortes, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+est_desc$tomas <- set_na(est_desc$tomas, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+
+
+library(survey)
+library(srvyr)
+
+options(survey.lonely.psu = "certainty" )
+## Crear objeto tbl_svy
+
+
+est_desc=na.omit(est_desc)
+
+ds <- est_desc %>% as_survey_design(#ids = RBD,  ## ids=1 (no hay conglomerado)
+                              weights = c("pond_estudiante_reg_dep_tens", "pond_esc_reg_dep_tens"))
+#pond_esc_reg_dep_tens
+
+
+
+
+redi_sicortes = ds %>%  group_by(redistriv) %>% 
+  summarise(porcentaje=survey_prop(na.rm = TRUE, vartype=c("ci"),level=c(0.95))*100) %>%
+  ggplot(aes(x=redistriv,y=porcentaje,fill=redistriv))+
+  geom_bar(stat = "identity") + 
+  geom_errorbar(aes(ymin=porcentaje_low, ymax=porcentaje_upp),
+                  width=0.2, position=position_dodge(.9)) +ggtitle("Quienes siempre justificarian cortes") + ylab("Porcentaje")  + xlab("Preferencias redistributivas") +  theme(legend.position = "none") + scale_y_continuous(limits = c(0, 100))  
+## Adultos
+
+est_desc  = est %>% filter(P35B==1) %>% dplyr::select(RBD, pond_estudiante_reg_dep_tens, 
+                                pond_esc_reg_dep_tens, 
+                                juicio_desigualdad = P25A,
+                                redistriv =P25B,
+                                cortes = P35B,
+                                tomas= P35C)
+
+
+est_desc$juicio_desigualdad<-as.factor(est_desc$juicio_desigualdad) ## ojo
+est_desc$redistriv<-as.factor(est_desc$redistriv) ## ojo
+est_desc$cortes<-as.factor(est_desc$cortes)  ## ojo
+est_desc$tomas<-as.factor(est_desc$tomas)  ## ojo
+
+est_desc$juicio_desigualdad <- set_na(est_desc$juicio_desigualdad, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+est_desc$redistriv <- set_na(est_desc$redistriv, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+est_desc$cortes <- set_na(est_desc$cortes, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+est_desc$tomas <- set_na(est_desc$tomas, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+
+
+library(survey)
+library(srvyr)
+
+est_desc=na.omit(est_desc)
+
+options(survey.lonely.psu = "certainty" )
+
+
+## Crear objeto tbl_svy
+ds <- est_desc %>% as_survey_design(#ids = RBD,  ## ids=1 (no hay conglomerado)
+                              weights = c("pond_estudiante_reg_dep_tens", "pond_esc_reg_dep_tens"))
+#pond_esc_reg_dep_tens
+
+
+
+
+redi_nocortes = ds %>% group_by(redistriv) %>% 
+  summarise(porcentaje=survey_prop(na.rm = TRUE, vartype=c("ci"),level=c(0.95))*100) %>%
+  ggplot(aes(x=redistriv,y=porcentaje,fill=redistriv))+
+  geom_bar(stat = "identity") + 
+  geom_errorbar(aes(ymin=porcentaje_low, ymax=porcentaje_upp),
+                  width=0.2, position=position_dodge(.9)) +  ggtitle("Quienes nunca justificarian cortes") + ylab("Porcentaje") + xlab("Preferencias redistributivas")+  theme(legend.position = "none") + scale_y_continuous(limits = c(0, 100)) 
+
+
+ggsave(cowplot::plot_grid(redi_sicortes, redi_nocortes,ncol=2),file="output/graf.png", width = 8, height = 4, dpi= "retina")
+
+
+
+
+```
+
+![]("output/graf.png")
+\newpage
+
+En la tabla numero dos se expone el análisis multinivel. En primer lugar, como se señala en el modelo nulo, 10% de la varianza de la justificación de la protesta disruptiva corresponde a variación entre escuelas, lo cual es interesante porque sugiere opiniones parcialmente compartidas entre compañeros. Seguidamente se puede observar el modelo “Control” el cual solo incluye el efecto del NSE medido mediante el proxy de dependencia administrativa, variable la cual, si bien tiene un efecto significativo al 95% de confianza, posee un tamaño de efecto insignificante.  En el modelo “Independiente” se observa el efecto total de la crítica hacia la desigualdad sobre la justificación de las protestas disruptivas, este es un efecto significativo con un 99,9% de confianza. La crítica a la desigualdad sobre la justificación de cortes explica el 25% de la varianza individual y el 60% de la grupal, explicando el 31% de la varianza total, lo que implica una relación de moderado a grande según los parámetros de @cohen_Statistical_1988.  Este efecto se mantiene pese a ser controlado por la dependencia del establecimiento.
+
+
+```{r, results='asis', echo = FALSE}
+
+
+library(mice)
+library(lavaan)
+library(stargazer)
+library(dplyr)
+library(sjPlot)
+library(tidyverse)
+library(texreg)
+# generate 5 multiple complete datasets
+
+
+pacman::p_load(dplyr,ggplot2,sjPlot,tidyverse,sjlabelled)
+load(file = "input/data/est.RData")
+
+est_desc  = est  %>% dplyr::select(RBD, pond_estudiante_reg_dep_tens, 
+                                pond_esc_reg_dep_tens, 
+                                juicio_desigualdad = P25A,
+                                redistriv =P25B,
+                                cortes = P35B,
+                                tomas= P35C,
+                                Dependencia,
+                                RBD)
+
+
+est_desc$juicio_desigualdad<-as.factor(est_desc$juicio_desigualdad) ## ojo
+est_desc$redistriv<-as.factor(est_desc$redistriv) ## ojo
+est_desc$cortes<-as.factor(est_desc$cortes)  ## ojo
+est_desc$tomas<-as.factor(est_desc$tomas)  ## ojo
+
+est_desc$juicio_desigualdad <- set_na(est_desc$juicio_desigualdad, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+est_desc$redistriv <- set_na(est_desc$redistriv, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+est_desc$cortes <- set_na(est_desc$cortes, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+est_desc$tomas <- set_na(est_desc$tomas, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+
+
+cfa_red1 <- '
+	# variables latentes estudiantes
+	redistribucion_est =~ redistriv + juicio_desigualdad
+	protesta  =~ cortes + tomas
+
+  '
+
+
+# fit model for each complete dataset
+fit1 <- cfa(cfa_red1, data = est_desc, ordered=T)
+
+# predict scores for all models
+p1 <- predict(fit1)
+
+# compute 'average' across 5 sets of scores:
+scores <- (p1)
+
+#Generate factor scores
+scores_dat = as.data.frame(scores)
+
+# Adaptar base para agregar factor scores (sacar todos NA)
+#est_desc = est_desc[rowSums(is.na(est_desc)) != 5, ]
+est_desc=na.omit(est_desc)
+
+# Merge with factor scores
+basepuntaje = cbind(est_desc, scores)
+
+# Check
+#stargazer(basepuntaje[,8:10], type = "text")
+
+
+
+
+
+library(scales)
+#basepuntaje$protesta_100 <- rescale(basepuntaje$protesta, from = c(-1.5522, 1.1341 ), to = c(0, 100))3
+
+
+#basepuntaje =  basepuntaje %>% group_by(rbd_est) %>% mutate(protesta_rbd=mean(protesta))
+
+
+#basepuntaje$protesta_100 <- rescale(basepuntaje$protesta, from = c(-1.5522, 1.1341 ), to = c(0, 100))
+
+
+#basepuntaje =  basepuntaje %>% group_by(rbd_est) %>% mutate(nse_rbd=mean(ingresos_pc))
+
+
+library(lme4)
+
+reg0= lmer(protesta ~ 1 + (1|RBD), data=basepuntaje) 
+reg1= lmer(protesta ~ 1 + as.factor(Dependencia) + (1|RBD), data=basepuntaje) 
+reg2= lmer(protesta ~ 1 + redistribucion_est +  (1|RBD), data=basepuntaje) 
+reg3= lmer(protesta ~ 1 + as.factor(Dependencia) + redistribucion_est + (1|RBD), data=basepuntaje) 
+
+knitreg(list(reg0,reg1,reg2,reg3),custom.coef.names=c("Intercepto","Subvensionados (Municipales)","Particulares (Municipales)","Critica a la desigualdad"),custom.model.names=c(" Modelo Nulo","  Control"," Independiente","   Controlado"),custom.header = list(" " = 1, "Regresiones con predictores " = 2:4), custom.gof.rows=list("Correlación Intraclase"=c("10,14"," "," "," "),"R2 Nivel 1"=c(" ","< .1",".25",".25"),"R2 Nivel 2"=c(" ","< .1",".60",".80")))
+  
+```
+
+
+
+
+\newpage
+
+# Conclusión
+
+En suma, se puede observar como la crítica a la desigualdad social fomenta la justificación de la participación disruptiva. Dicha relación es sumamente relevante para comprender la situación actual y proyectar la democracia, pues debemos lograr una sociedad más justa para que sea sostenible [@gamez_Objetivos_2021]. Esto refuerza la relación entre sentido de justicia y ciudadanía señalada por @sabbagh_Spheres_2006.  En conclusión, la desigualdad no solo afecta directamente la disposición a participación,  sino que también afecta los modos de participación, haciéndolos más violentos. A modo de refrán se puede decir que quien “Siembra justicia social cosecha paz y estabilidad democrática”.
+
+
+
+# Bibliografía

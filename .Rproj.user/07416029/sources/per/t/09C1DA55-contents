@@ -1,0 +1,265 @@
+---
+title: "prod_prep_data"
+author: "Francisco Meneses"
+date: "02-07-2021"
+output: html_document
+---
+
+# Cargar datos
+```{r}
+# Bases de apoderados.
+load("../input/data/ap.RData")
+
+
+# Base de estudiantes.
+
+load("../input/data/est.RData")
+
+
+
+# Arreglar caso 897
+ap$FOLIO_EST[ap$FOLIO_EST == 897] <- 892
+
+```
+
+```{r}
+pacman::p_load(dplyr, sjlabelled)
+```
+
+# Seleccionar datos
+```{r}
+
+# Seleccionar  y renombrar variables de la base de datos de apoderados
+ap_proc <- ap %>% dplyr::select(rbd = RBD,
+                                folio = FOLIO_EST,
+                               region = REGION,
+                               dependencia = Dependencia,
+                               pos_pol = P23,
+                               genero = P39,
+                               nacimiento = P40A,
+                               personas_hogar = P41,
+                               ingresos_tramos = P55,
+                               libros_hogar = P47,
+                               
+                               # Meritocracia: get a head
+                               
+                               perc_trabajo_duro = P9D,
+                               perc_esfuerzo = P10D,
+                               
+                               # Meritocracia: atribución de pobreza
+                               
+                               atriv_pobr_esf = P11C,
+                               atriv_pobr_tal = P11A,
+                               
+                               # Redistribución                               
+                               
+                               juicio_desigualdad = P10A,
+                               redistriv = P10B,
+                               
+                               
+                               # Preferencia de acceso igualitario a ddhh
+                               educ = P10E,
+                               salud = P10F) 
+
+
+# Ingresos tramos
+ap_proc$ingresos_tramos[ap_proc$ingresos_tramos == 12 | ap_proc$ingresos_tramos == 13] <- 99
+
+# Etiquetar
+ap_proc$ingresos_tramos <- set_labels(x = ap_proc$ingresos_tramos, labels = c("Menos de $101.000 mensuales líquidos" = 1,
+                                                                            "De $101.001 a $134.000 mensuales líquidos" = 2,
+                                                                            "De $134.001 a $179.000 mensuales líquidos" = 3,
+                                                                            "De $179.001 a $224.000 mensuales líquidos" = 4,
+                                                                            "De $224.001 a $291.000 mensuales líquidos" = 5,
+                                                                            "De $291.001 a $358.000 mensuales líquidos" = 6,
+                                                                            "De $358.001 a $448.000 mensuales líquidos" = 7,
+                                                                            "De $448.001 a $1.000.000 mensuales líquidos" = 8,
+                                                                            "De $1.000.001 a $2.000.000 mensuales líquidos" = 9,
+                                                                            "De $2.000.001 a $3.000.000 mensuales líquidos" = 10,
+                                                                            "Más de $3.000.000 mensuales líquidos" = 11,
+                                                                            "Ns/Nr" = 99))
+# Drop levels
+ap_proc$ingresos_tramos <- set_na(ap_proc$ingresos_tramos, na = c(12,13), drop.levels = TRUE, as.tag = FALSE)
+
+
+# Construcción ingresos numerico
+
+as.numeric(ap_proc$ingresos_tramos)
+
+ap_proc$ingresos[ap_proc$ingresos_tramos == 1] <- 50500 
+ap_proc$ingresos[ap_proc$ingresos_tramos == 2] <- 117500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 3] <- 156500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 4] <- 201500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 5] <- 257500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 6] <- 324500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 7] <- 403000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 8] <- 724000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 9] <- 1500000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 10] <- 2500000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 11] <- 3500000
+
+# Construcción ingreso per capita
+ap_proc$ingresos_pc <- ap_proc$ingresos/ap_proc$personas_hogar
+ap_proc$ingresos_pc <- trunc(ap_proc$ingresos_pc)
+
+ap_proc$ingresos_pc<- set_na(ap_proc$ingresos_pc, na = c(99), drop.levels = TRUE, as.tag = FALSE)
+
+
+# Seleccionar y renombrar variables de la base de datos de estudiantes.                               
+est_proc <- est  %>% dplyr::select(rbd = RBD,
+                                 region = REGION,
+                                 folio = FOLIO,
+                                 dependencia = Dependencia,
+                                 pos_pol = P59,
+                                 genero = P58,
+                                 resp_prof = P56B,
+                                 educ_padre = P66,
+                                 educ_madre = P67,
+                                 libros_hogar = P68,
+                                 tiempo_compartido = P36,
+                                  
+                                 # Meritocracia: get a head
+                                 perc_trabajo_duro = P24D,
+                                 perc_esfuerzo = P25D,
+                                 # Meritocracia: atribución
+                                 atriv_pobr_esf = P26C,
+                                 atriv_pobr_tal =P26A,
+                                 
+                                 # Redistribucion
+                                 juicio_desigualdad = P25A,
+                                 redistriv =P25B,
+                                 
+                                 # Preferencia de acceso igualitario a ddhh
+                                 educ= P25E,
+                                 salud= P25F, 
+                                 
+                                 # Protesta disruptiva
+                                 cortes = P35B,
+                                 tomas= P35C) 
+
+```
+
+# Juntar datos
+```{r}
+#Juntar datos 
+
+ap_est <- left_join(x = est_proc,y = ap_proc,by =c("folio"="folio"),suffix=c("_est","_ap"))
+```
+
+
+# Eliminar NA
+```{r}
+
+
+#Preparar datos atribuciones de pobreza
+
+ap_est$atriv_pobr_esf_est <- set_na(ap_est$atriv_pobr_esf_est, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+ap_est$atriv_pobr_esf_ap <- set_na(ap_est$atriv_pobr_esf_ap, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+ap_est$atriv_pobr_esf_est <- set_na(ap_est$atriv_pobr_esf_est, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+ap_est$atriv_pobr_esf_ap <- set_na(ap_est$atriv_pobr_esf_ap, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+#preparar datos redistribución
+
+
+ap_est$juicio_desigualdad_est <- set_na(ap_est$juicio_desigualdad_est, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+ap_est$juicio_desigualdad_ap <- set_na(ap_est$juicio_desigualdad_ap, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+ap_est$redistriv_est <- set_na(ap_est$redistriv_est, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+ap_est$redistriv_ap <- set_na(ap_est$redistriv_ap, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+
+# Protesta
+
+ap_est$cortes <- set_na(ap_est$cortes, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+ap_est$tomas <- set_na(ap_est$tomas, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+# Acceso a derechos
+
+
+ap_est$educ_est <- set_na(ap_est$educ_est, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+ap_est$salud_est <- set_na(ap_est$salud_est, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+
+ap_est$educ_ap <- set_na(ap_est$educ_ap, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+ap_est$salud_ap <- set_na(ap_est$salud_ap, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+
+```
+
+# Protesta estudiantes 
+```{r}
+# redistribución estudiantes 
+
+ap_est$cortes = factor(ap_est$cortes, levels = c(1,2,3,4), labels = c("Nunca se justifica", "Casi nunca se justifica", "A veces se justifica", "Siempre se justifica"))
+
+  ap_est$tomas = factor(ap_est$tomas, levels = c(1,2,3,4), labels = c("Nunca se justifica", "Casi nunca se justifica", "A veces se justifica", "Siempre se justifica"))
+
+# Etiquetar
+ap_est$cortes <- set_label(x = ap_est$cortes, label = "Que las personas participen en un bloqueo de calles o carreteras")
+
+ap_est$tomas <- set_label(x = ap_est$tomas, label = "Que las personas participen en un bloqueo de calles o carreteras")
+
+```
+
+
+# Preferencias redistributivas de padres e hijos
+```{r}
+# redistribución estudiantes 
+
+ap_est$redistriv_est = factor(ap_est$redistriv_est, levels = c(1,2,3,4), labels = c("Muy en desacuerdo", "En desacuerdo", "De acuerdo", "Muy de acuerdo"))
+
+ap_est$juicio_desigualdad_est = factor(ap_est$juicio_desigualdad_est, levels = c(1,2,3,4), labels = c("Muy en desacuerdo", "En desacuerdo", "De acuerdo", "Muy de acuerdo"))
+
+# Etiquetar
+ap_est$redistriv_est <- set_label(x = ap_est$redistriv_est, label = "Es responsabilidad del gobierno reducir las diferencias económicas (Estudiantes)")
+
+ap_est$juicio_desigualdad_est <- set_label(x = ap_est$juicio_desigualdad_est, label = "Las diferencias económicas en Chile son demasiado grandes (Estudiantes) ")
+
+
+# redistribucion padres 
+
+ap_est$redistriv_ap = factor(ap_est$redistriv_ap, levels = c(1,2,3,4), labels = c("Muy en desacuerdo", "En desacuerdo", "De acuerdo", "Muy de acuerdo"))
+
+ap_est$juicio_desigualdad_ap = factor(ap_est$juicio_desigualdad_ap, levels = c(1,2,3,4), labels = c("Muy en desacuerdo", "En desacuerdo", "De acuerdo", "Muy de acuerdo"))
+
+# Etiquetar
+ap_est$redistriv_ap <- set_label(x = ap_est$redistriv_ap, label = "Es responsabilidad del gobierno reducir las diferencias económicas (Apoderados)")
+
+ap_est$juicio_desigualdad_ap <- set_label(x = ap_est$juicio_desigualdad_ap, label = "Las diferencias económicas en Chile son demasiado grandes (Apoderados)")
+
+
+
+save(ap_est, file="../input/data/ap_est.RData")
+```
+
+
+# Numerico para factorial 
+```{r}
+
+basepuntaje <- ap_est %>%  select( rbd_est, redistriv_est, juicio_desigualdad_est,redistriv_ap, juicio_desigualdad_ap, cortes, tomas,ingresos_pc)
+
+basepuntaje$redistriv_est <- as.numeric(basepuntaje$redistriv_est)
+basepuntaje$juicio_desigualdad_est <- as.numeric(basepuntaje$juicio_desigualdad_est)
+basepuntaje$cortes <- as.numeric(basepuntaje$cortes)
+basepuntaje$tomas <- as.numeric(basepuntaje$tomas)
+#basepuntaje$atriv_pobr_esf_est <- as.numeric(basepuntaje$atriv_pobr_esf_est)
+#basepuntaje$atriv_pobr_tal_est <- as.numeric(basepuntaje$atriv_pobr_tal_est)
+#basepuntaje$salud_est <- as.numeric(basepuntaje$salud_est)
+#basepuntaje$educ_est <- as.numeric(basepuntaje$educ_est)
+
+basepuntaje$redistriv_ap <- as.numeric(basepuntaje$redistriv_ap)
+basepuntaje$juicio_desigualdad_ap <- as.numeric(basepuntaje$juicio_desigualdad_ap)
+##basepuntaje$atriv_pobr_esf_ap <- as.numeric(basepuntaje$atriv_pobr_esf_ap)
+#basepuntaje$atriv_pobr_tal_ap <- as.numeric(basepuntaje$atriv_pobr_tal_ap)
+#basepuntaje$salud_ap <- as.numeric(basepuntaje$salud_ap)
+#basepuntaje$educ_ap <- as.numeric(basepuntaje$educ_ap)
+
+basepuntaje<-na.omit(basepuntaje)
+
+save(basepuntaje, file="../input/data/basepuntaje.RData")
+```
+

@@ -1,0 +1,5 @@
+"0","load(""input/data/basepuntaje.RData"")
+"
+"2","Error in readChar(con, 5L, useBytes = TRUE) : 
+  no se puede abrir la conexión
+"

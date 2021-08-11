@@ -1,0 +1,152 @@
+---
+title: "Descriptivo"
+author: "Francisco Meneses"
+date: "10-07-2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+ load("C:/Users/Francisco Meneses R/Desktop/Universo universitario/magister/Metodo cuanti/Proyecto de investigación/protesta-redistributiva/input/data/est.RData")
+```
+
+```{r}
+est_desc  = est %>% dplyr::select(RBD, pond_estudiante_reg_dep_tens, 
+                                pond_esc_reg_dep_tens, 
+                                juicio_desigualdad = P25A,
+                                redistriv =P25B,
+                                cortes = P35B,
+                                tomas= P35C)
+
+
+est_desc$juicio_desigualdad<-as.factor(est_desc$juicio_desigualdad) ## ojo
+est_desc$redistriv<-as.factor(est_desc$redistriv) ## ojo
+est_desc$cortes<-as.factor(est_desc$cortes)  ## ojo
+est_desc$tomas<-as.factor(est_desc$tomas)  ## ojo
+
+est_desc$juicio_desigualdad <- set_na(est_desc$juicio_desigualdad, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+est_desc$redistriv <- set_na(est_desc$redistriv, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+est_desc$cortes <- set_na(est_desc$cortes, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+est_desc$tomas <- set_na(est_desc$tomas, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+
+
+library(survey)
+library(srvyr)
+
+options(survey.lonely.psu = "certainty" )
+## Crear objeto tbl_svy
+ds <- est_desc %>% as_survey_design(#ids = RBD,  ## ids=1 (no hay conglomerado)
+                              weights = c("pond_estudiante_reg_dep_tens", "pond_esc_reg_dep_tens"))
+#pond_esc_reg_dep_tens
+```
+
+
+
+```{r}
+library(ggplot2)
+ds %>% group_by(redistriv) %>% summarise(cortes=survey_total(na.rm = TRUE))
+
+ds %>% group_by(redistriv) %>% 
+  summarise(proportion = survey_mean(vartype = c("ci"),na.rm = TRUE))
+
+ds %>% group_by(redistriv) %>% 
+  summarise(trabajadores=survey_total(na.rm = TRUE, vartype=c("ci"),level=c(0.95))) %>%
+  ggplot(aes(x=redistriv,y=trabajadores,fill=redistriv))+
+  geom_bar(stat = "identity") + 
+  geom_errorbar(aes(ymin=trabajadores_low, ymax=trabajadores_upp),
+                  width=0.2, position=position_dodge(.9)) + ggtitle("Redistribución Estudiantes")
+
+
+ds %>% group_by(redistriv) %>% 
+  summarise(porcentaje=survey_prop(na.rm = TRUE, vartype=c("ci"),level=c(0.95))*100) %>%
+  ggplot(aes(x=redistriv,y=porcentaje,fill=redistriv))+
+  geom_bar(stat = "identity") + 
+  geom_errorbar(aes(ymin=porcentaje_low, ymax=porcentaje_upp),
+                  width=0.2, position=position_dodge(.9)) +ggtitle("Redistribución Estudiantes") + xlab("Grado de acuerdo con la redistribución") + scale_fill_discrete(name = "Categorias de respuesta", labels = c("Muy en desacuerdo", "En desacuerdo", "De acuerdo","Muy de acuerdo","Caso perdidos")) + ylab("Porcentaje")
+
+```
+
+```{r}
+library(ggplot2)
+ds %>% group_by(redistriv) %>% summarise(cortes=survey_total(na.rm = TRUE))
+
+ds %>% group_by(redistriv) %>% 
+  summarise(proportion = survey_mean(vartype = c("ci"),na.rm = TRUE))
+
+plotredest=ds %>% group_by(redistriv) %>% 
+  summarise(trabajadores=survey_total(na.rm = TRUE, vartype=c("ci"),level=c(0.95))) %>%
+  ggplot(aes(x=redistriv,y=trabajadores,fill=redistriv))+
+  geom_bar(stat = "identity") + 
+  geom_errorbar(aes(ymin=trabajadores_low, ymax=trabajadores_upp),
+                  width=0.2, position=position_dodge(.9))
+```
+
+
+
+```{r}
+ load("C:/Users/Francisco Meneses R/Desktop/Universo universitario/magister/Metodo cuanti/Proyecto de investigación/protesta-redistributiva/input/data/ap.RData")
+ap_proc <- ap %>% dplyr::select(rbd = RBD,
+                               ingresos_tramos = P55,
+                               juicio_desigualdad = P10A,
+                               redistriv = P10B ,  personas_hogar = P41, pond_apoderado_reg_dep_tens, pond_esc_reg_dep_tens) 
+
+
+ap_proc$juicio_desigualdad<-as.factor(ap_proc$juicio_desigualdad) ## ojo
+ap_proc$redistriv<-as.factor(ap_proc$redistriv) ## ojo
+
+
+as.numeric(ap_proc$ingresos_tramos)
+
+ap_proc$ingresos[ap_proc$ingresos_tramos == 1] <- 50500 
+ap_proc$ingresos[ap_proc$ingresos_tramos == 2] <- 117500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 3] <- 156500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 4] <- 201500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 5] <- 257500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 6] <- 324500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 7] <- 403000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 8] <- 724000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 9] <- 1500000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 10] <- 2500000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 11] <- 3500000
+
+# Construcción ingreso per capita
+ap_proc$ingresos_pc <- ap_proc$ingresos/ap_proc$personas_hogar
+ap_proc$ingresos_pc <- trunc(ap_proc$ingresos_pc)
+
+ap_proc$ingresos_pc<- set_na(ap_proc$ingresos_pc, na = c(99), drop.levels = TRUE, as.tag = FALSE)
+
+
+ap_proc$ingresos_tramos <- set_na(ap_proc$juicio_desigualdad, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+ap_proc$redistriv <- set_na(ap_proc$redistriv, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+
+
+library(survey)
+library(srvyr)
+
+options(survey.lonely.psu = "certainty" )
+## Crear objeto tbl_svy
+ds <- ap_proc %>% as_survey_design(weights = c("pond_apoderado_reg_dep_tens","pond_esc_reg_dep_tens"))
+
+```
+
+
+```{r}
+
+
+ds %>% group_by(redistriv) %>% 
+  summarise(porcentaje=survey_prop(na.rm = TRUE, vartype=c("ci"),level=c(0.95))*100) %>%
+  ggplot(aes(x=redistriv,y=porcentaje,fill=redistriv))+
+  geom_bar(stat = "identity") + 
+  geom_errorbar(aes(ymin=porcentaje_low, ymax=porcentaje_upp),
+                  width=0.2, position=position_dodge(.9)) + ggtitle("Redistribución Adultos") + xlab("Grado de acuerdo con la redistribución") + scale_fill_discrete(name = "Categorias de respuesta", labels = c("Muy en desacuerdo", "En desacuerdo", "De acuerdo","Muy de acuerdo","Caso perdidos")) + ylab("Porcentaje")
+
+```
+
+
+

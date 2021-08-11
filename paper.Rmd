@@ -1,0 +1,582 @@
+---
+title: "Protesta desigualdad y familia"
+author: "Francisco J. Meneses Rivas"
+date: "29-04-2021"
+output:
+  bookdown::pdf_document2:
+    template: null
+    toc: no
+    keep_tex: no
+subtitle: El rol de la transmisión intergeneracional de las preferencias redistributivas
+  en la justificación de la protesta radical en secundarios populares de Chile
+bibliography: input/bib/redistribucion-protestas.bib
+csl: input/bib/apa.csl
+header-includes:
+- \usepackage{caption}
+- \captionsetup[figure, table]{labelfont={bf},labelformat={default},labelsep=period}
+- \usepackage{graphicx}
+- \usepackage{float}
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+geometry: "left=1cm,right=1cm,top=2cm,bottom=2cm" # márgenes de página
+linestretch: '1'
+link-citations: yes
+linkcolor: blue
+fontsize: 12pt
+font-family: Times New Roman
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+```
+
+
+# Introducción: 
+Comprender las manifestaciones estudiantiles es fundamental para entender la situación nacional ya que estas han fomentado una interpelación a la sociedad e incluso han cambiado prioridades políticas [@munoz-tamayo_jovenes_2019]. Los jóvenes populares de bajo nivel socioeconómico han adquirido relevancia en las manifestaciones del último periodo, especialmente en protestas disruptivas que buscan influir desde fuera de la institucionalidad [@ale_Saltar_2021]. Esta situación contrasta en dos sentidos con teorías y estudios sobre participación. En primer lugar, existen múltiples alertas sobre la baja participación política juvenil [@contreras_DIFERENCIAS_2013; @janmaat_Civic_2013]. En segundo lugar, la creciente participación de jóvenes populares contrasta con la desigualdad en la voz política en Chile [@joignant_Desigualdades_2017]. En el campo de la desigualdad política, la teoría de recursos supone que personas con más ingresos, estudios y tiempo tendrán mayor disposición a participar [@miranda_Desigualdad_2018]. No obstante, como evidencia @miranda_Cambios_2021 jóvenes de menor nivel socioeconómico poseen una mayor disposición a participar en protesta disruptiva. Al respecto, es posible preguntarse, ¿Qué motivaciones y rasgos comparten los estudiantes que justifican estos actos de protesta?
+
+Para responder esta pregunta se puede aludir al rol de la desigualdad y las sensaciones de injusticia. La sociología ha señalado que la desigualdad posee el potencial de corroer la democracia y la comunidad política [@garreton_ciencias_2014 ; @currie_desigualdad_2017; @sandel_tirania_2021]. Desde los estudios de justicia distributiva, se ha destacado que no solo importa la desigualdad en sí misma, sino las percepciones, opiniones, evaluaciones y sensaciones que los sujetos poseen sobre la distribución de recursos[@janmaat_Subjective_2013; @jasso_New_1980]. Enfocándonos en población juvenil, incluso se ha señalado que las sensaciones de injusticia respecto a la desigualdad social pueden afectar aspectos políticos de los jóvenes, fomentando no solo sensaciones de apatía política, sino incluso motivando acciones subversivas e insurreccionales [@easterbrook_social_2021]. En vista de lo anterior, parece plausible evaluar hasta qué punto los secundarios chilenos, que justifican protestas más violentas y riesgosas, comparten entre si sensaciones de injusticia respecto a la distribución de los recursos. 
+
+En torno al estallido chileno, han existido múltiples análisis sobre aquello que motiva a los jóvenes a participar en actos de protesta. No obstante, pocas de estas reflexiones están basadas en evidencia empírica que recoja las opiniones de los secundarios. Por ejemplo, el columnista Carlos Peña señala que:
+
+>  "Hay una cuestión generacional que se manifiesta cada vez con mayor intensidad; hay una cuestión de legitimidad que poco a poco se insinúa [...] Las nuevas generaciones están convencidas de que la intensidad de sus creencias sobre la injusticia del mundo valida cualquier conducta…" [@cooperativa_rabia_2019, 2]. 
+
+Frente a estas declaraciones, el antropólogo Yanko Gonzáles criticó el carácter adultocéntrico de la columna, señalando que esta intenta quitar validez a las protestas juveniles considerando las como meros impulsos pueriles y viscerales [@gonzales_Epilogo_2021]. Más allá de la criticas respecto al tono de la explicación de Peña, que busca deslegitimar las acciones de los jóvenes, el columnista probablemente tiene razón al señalar que este es un problema asociado a la legitimidad, a las sensaciones de injusticia y como estas validan para los jóvenes acciones más radicales. 
+
+El que las sensaciones de injusticia motiven una visión más crítica y activa de la ciudadanía parece ser un asunto generalizado y no solo un mero antojo de los jóvenes chilenos como critica Peña. Por ejemplo, @hooghe_comparative_2016 señala a partir de un análisis internacional de clases latentes, que en los países donde están menos garantizados los derechos sociales los jóvenes poseen visiones del buen ciudadano como un sujeto activo y crítico, mientras que, en países con mejores condiciones de vida, la idea de buen ciudadano se asocia a la obediencia y el respeto por las leyes. Similarmente, @miranda_Cambios_2021 señalan que en los estudiantes de la región de América Latina existe una mayor validación de distintos tipos de protesta, incluso de aquellos que implican acciones más radicales como tomar establecimientos o cortar carreteras.  De este modo, se puede pensar, en base a distinta evidencia empírica y reflexiones sociológicas, que las sensaciones de injusticia de los jóvenes respecto a la desigualdad están ampliamente relacionadas a la justificación de estas practicas 
+
+Este artículo se propone investigar dicha relación a la luz de la base de datos del Panel de Ciudadanía Escolar (PACES). Los datos provienen de un estudio sobre socialización política familiar que implico encuestar a estudiantes, sus apoderados y sus profesores. Esta encuesta se denomina Panel de Ciudadanía Escolar (PACES) y fue producida por el proyecto Fondecyt n°1181239 “Socialización política y experiencia escolar: el rol de la familia y la escuela” financiado por la Agencia Nacional de Investigación (ANID). La muestra es representativa de los estudiantes de segundo medio (décimo grado) que asisten a escuelas de la Región Metropolitana o en las comunas de Antofagasta, Calama, Talca, Curicó y Linares. En total se seleccionaron 64 escuelas. En cada establecimiento educacional seleccionado se consideró encuestar a un curso completo, sus apoderados y sus docentes de historia. En concreto, se cuenta con los datos de 1635 estudiantes, 744 apoderados y 103 profesores. Los datos fueron producidos entre agosto y diciembre del año 2019. En vista del periodo de producción de los datos, estos pueden considerarse de gran interés para el estudio de las opiniones de los jóvenes en el contexto del estallido social. 
+
+Este estudio, está ampliamente inspirado en el capítulo de Daniel Miranda y Juan Carlos Castillo del libro "Saltar el torniquete: reflexiones desde las juventudes de octubre”. Este trabajo implica la revisión de la encuesta de ciudadanía ICCS durante sus tres mediciones en Chile. En él los autores señalan distintos puntos importantes, por ejemplo, durante los últimos años ha aumentado la justificación de los distintos tipos de protesta, sobre todo de los más radicales [@miranda_Cambios_2021]. Además, se ha señalado que los jóvenes de sectores populares son quienes más validan dichos actos radicales. En vista de dicho trabajo y sus reflexiones. Esta es una evidencia particularmente interesante si se considera que los estudiantes encuestados en 2015, para el año del estallido social se encontraban en cuarto medio. En vista de lo anterior resulta interesante profundizar en la siguiente pregunta ¿Cuales son las varibles intermedias que explican la relación entre nivel socioeconómico y justificación de protesta radical? 
+
+Para responder esta pregunta, este articulo propone que padres de bajo nivel socioeconómico poseen una mayor critica a la desigualdad económica, lo cual es transmitido a sus hijos y esto a su vez motiva en ellos sensaciones de injusticia que derivan en una motivación a justificar actos de protesta que pueden ser disruptivos e incluso ilegales.  De este modo, propongo que el malestar social que no pueden canalizar las generaciones que vivieron en la dictadura, es movilizado por sus hijos, quienes comparten sus sentimientos de injusticia, pero no su cultura política, lo cual les permite direccionar dicha sensación en el apoyo una participación política más contenciosa que es capaz de influir la política desde fuera de ella.  
+
+
+Para facilitar la comprensión de esta propuesta se presenta a continuación en la figura N°1 el modelo teórico de la misma. En ella se puede ver, en la parte inferior, que existe una relación entre NSE y justificación de protesta disruptiva. Además, en la parte superior, se observa que parte de dicha relación se debe a la transmisión de sensaciones de injusticia medidas a partir de las preferencias redistributivas. 
+
+![](input/images/modelo-teorico.png)
+
+\newpage
+
+Formalizando las ideas anteriores se propone el siguiente objetivo de investigación: 	
+
+__Objetivo general__:  Evaluar en qué medida la transmisión intergeneracional de la sensación de injusticia respecto a la desigualdad social explica la justificación de protestas radicales por parte de los secundarios populares. 
+
+__Objetivos específicos__
+
+  +	Evaluar la influencia del nivel socioeconómico en las preferencias redistributivas de los padres.
+  +	Evaluar la transmisión intergeneracional de preferencias redistributivas. 
+  +	Evaluar en qué medida las preferencias redistributivas explican la justificación de protestas radicales por parte de los estudiantes. 
+
+
+# Antecedentes: 
+
+En la presente sección señalaremos en primer lugar algunos conceptos y teorías importantes en torno al estudio de la participación política juvenil. En segunda instancia, señalaremos algunas definiciones propias del campo de la justicia distributiva, como las preferencias redistributivas. Finalmente, expondremos las hipótesis principales que se desprenden de esta sección. 
+
+## Los jóvenes y la participación política. 
+
+Al trabajar sobre temas de ciudadanía y juventud ha existido una curiosa ambivalencia para el caso chileno [@miranda_Desigualdad_2018]. Por un lado, especialmente desde la literatura internacional, se ha destacado que los jóvenes padecen una creciente apatía política [@venegasmuggli_Por_2016; @tezanos-pinto_Participacion_2015; @janmaat_Civic_2013], mientras que, por otro lado, se ha destacado su rol en la participación en los últimos movimientos sociales [@ale_Saltar_2021]. Una forma de dar salida a esta contradicción es considerar que los jóvenes tienen predilección por la participación de tipo contenciosas [@miranda_Cambios_2021], es decir por aquellas formas de participar políticamente que no están dentro de la política institucional, sino que desde fuera intentan influir en ella.
+
+
+Existen distintos modos de referirse a los actos de protesta que suelen realizar los jóvenes. @miranda_Cambios_2021 Utilizan el concepto de protesta contenciosa que refiere a un tipo de participación fuera de la política institucional pero que tiene como objetivo influir en ella. Ejemplos de protesta contenciosa pueden ser manifestaciones, cortes de ruta, rayados de murallas, entre otros. También se ha denominado a estos actos de protesta en la literatura especializada como protestas ilegales o protestas violentas [@hoskins_Introduction_2019] En el marco del presente estudio no utilizaremos el termino de protestas contenciosas, que involucra manifestaciones pacíficas, sino que nos centraremos en lo que denominaremos protestas radicales o disruptivas [@plazaschaefer_participacion_2018], las cuales involucran un mayor nivel de riesgo para los participantes, como puede ser el bloqueo de caminos y la toma de edificios públicos. Se decide utilizar este término frente a los de @hoskins_Introduction_2019, simplemente por que poseen menor carga normativa. 
+
+Junto al carácter para-institucional de la participación juvenil es necesario considerar, lo que la literatura a denominado, el modelo de recursos [@brady_Political_2015]. Según este modelo, quienes participan políticamente son quienes poseen mayores recursos para hacerlo, tales como mayor tiempo o conocimiento sobre temas políticos. En sintonía con este modelo, se ha estudiado profundamente a nivel internacional la importancia de la transmisión intergeneracional de la desigualdad política [@miranda_Desigualdad_2018], según la cual, padres de escasos recursos y consecutiva baja participación política, heredan a sus hijos estas cualidades, mientras que los padres adinerados fomentan en sus hijos una cultura académica y política. 
+
+En suma, no solo se ha señalado que los jóvenes son más apáticos políticamente, sino que se ha señalado que esta tendencia se ve acentuada en jóvenes de escasos recursos. Sin duda, esta imagen teórica de la participación política de la juventud entra en conflicto con los hechos acaecidos en Chile el 2019 [@ale_Saltar_2021], en los cuales fueron los jóvenes populares quienes iniciaron las revueltas. No obstante, no se puede desconsiderar la importancia de estas teorías ya que poseen contundente evidencia. En vista de ellas, resulta interesante estudiar la participación política en consideración del contexto familiar y el nivel socioeconómico. 
+
+Como señalan [@miranda_Cambios_2021], no podemos comprender a los jóvenes como sujetos aislados, sino que deben entenderse como actores encarnados en un contexto determinado, en el cual, sus familias y las ideas de sus familias poseen una relevante influencia. En esta línea, los autores destacan que resulta interesante que relación positiva entre nivel socioeconómico y participación se invierte al observar la participación más radical. Dicho de otro modo, jóvenes con padres de menores recursos, poseen un mayor apoyo a las acciones más radicales de participación. 
+
+En vista de la socialización familiar,  de los estudios de transmisión intergeneracional y desigualdad intergeneracional de la política, se espera que los estudiantes compartan creencias políticas y económicas con sus padres. Por ello se hipotetiza que 
+
+*  $H_1$ _Las preferencias redistributivas son transmitidas de padres a hijos_.
+
+
+## Justicia Distributiva y preferencias redistributivas. 
+
+El estudio de la desigualdad social ha tenido un lugar central en la sociología. Por un lado, está el desarrollo de la investigación en el ámbito de la estratificación social, donde se ha puesto atención en las características de la estructura social y en los mecanismos de preproducción de la desigualdad [@kerbo_Estratificacion_1998; @chan_Class_2007]. Por otro lado, durante las últimas décadas se ha desarrollado un ámbito de investigación que propone estudiar las actitudes distributivas de los individuos en relación con su posición en la estructura social, principalmente a través de sus percepciones y preferencias en torno a la desigualdad económica [@kluegel_Beliefs_2017; @jensen_Deservingness_2017]. Desde un enfoque de interés racional se sostiene que la posición relativa de los individuos en la estructura social, representada a través de los ingresos, logro educacional y posición en el mercado laboral, trae consigo que individuos de mayor estatus manifiesten actitudes menos igualitarias, y, por tanto, tiendan a justificar mayor desigualdad [@meltzer_Tests_1983; @gugushvili_Intergenerational_2016].
+
+Un indicador que se ha utilizado para medir la aceptación y critica a la desigualdad han sido las preferencias redistributivas, las cuales se deben entender en base al concepto de redistribución y al de preferencias. Por un lado, la redistribución es un medio por el cual las sociedades pueden disminuir la desigualdad económica mediante impuestos y transferencias [@solt_Measuring_2020]. Por otro lado, las preferencias son un término utilizado para denotar "lo que debería ser" en contraposición a las percepciones, que corresponden a "lo que se cree que es realmente" [@castillo_Meritocracia_2019; @janmaat_Subjective_2013]. Por ende, debemos comprender las preferencias redistributivas como el deseo de los individuos de que las sociedades disminuyan sus niveles de desigualdad.  
+
+Las preferencias por la redistribución se ven influenciadas tanto por criterios morales [@koos_moral_2019],como por criterios racionales, como señala la teoría del votante medio [@wong_Median_2017]. Desde la perspectiva del votante medio, los sujetos apoyarán políticas redistributivas si estos se ven beneficiados por ellas. Desde la economía moral, estas políticas serán apoyadas cuando se las considera moralmente correctas, aunque cabe destacar que ambas tendencias operan de manera diferenciada en los individuos [@sudo_Two_2020]. Además del interés propio y la ideología, la evidencia actual señala que un contexto proclive a la redistribución fomenta preferencias redistributivas, de modo tal que quienes se criaron en contextos redistributivos y estados de bienestar apoyan más este tipo de políticas [@legarrec_Distributive_2015]. Cabe destacar que, incluso en esos contextos, quienes más apoyan las políticas redistributivas son quienes obtienen ganancias netas con los impuestos, es decir quienes pagan un valor de impuestos menor al valor de las transferencias que reciben [@andreoli_Preferences_2020].
+En suma, las preferencias redistributivas, consideradas como el deseo de la disminución de la desigualdad, se encuentran más presentes en personas de bajo nivel socioeconómico. Considerando la relación entre NSE y preferencias redistributivas, es posible proponer que:
+
+* $H_2$  _Padres con menor nivel socioeconómico tendrán mayores preferencias redistributivas_
+
+# Desigualdad, sensaciones de justicia y ciudadanía. 
+Como se mencionó, las sensaciones de injusticia respecto a la desigualdad social pueden afectar aspectos políticos de los jóvenes, motivando acciones subversivas e insurreccionales [@easterbrook_social_2021]. Esta evidencia es consistente con el estudio de  @hooghe_comparative_2016 quien destaca que en países más desiguales y con menor garantía de derechos, los jóvenes asocian la idea de buen ciudadano a alguien crítico y dispuesto a protestar por sus derechos, mientras que en países acomodados la idea de ciudadanía se asocia al respeto por el orden y las leyes.  De ambas evidencias se puede deducir que personas de menor nivel socioeconómico, con menor acceso a garantías de derecho y con mayores sensaciones de injusticia son más proclives a una visión activa de ciudadanía e incluso a sentimientos de insubordinación, en vista de lo anterior se propone que: 
+
+* $H_3$ _Estudiantes con mayores preferencias redistributivas justifican en mayor medida acciones de protesta disruptiva_.
+
+
+# Metodología
+
+## Datos
+
+Los datos provienen de un estudio sobre socialización política familiar que fue realizado aplicando una encuesta a estudiantes, sus apoderados y sus profesores. Esta encuesta se denomina Panel de Ciudadanía Escolar (PACES) y fue desarrollada por el proyecto Fondecyt N°1181239 "Socialización política y experiencia escolar: el rol de la familia y la escuela" financiado por la Agencia Nacional de Investigación (ANID) del Ministerio de Ciencia y Tecnología chileno. Para el diseño y el trabajo en terreno se contrató a la empresa Datavoz.
+
+Para el caso particular de este artículo solo utilizamos la primera ola del panel, por lo que este es un estudio transversal. La muestra es representativa de los estudiantes de segundo medio (décimo grado) que asisten a escuelas de la Región Metropolitana y las comunas de Antofagasta, Calama, Talca, Curicó y Linares. En total se seleccionaron 64 escuelas. En cada establecimiento educacional seleccionado se consideró encuestar a un curso completo, sus apoderados y sus docentes de historia, ciencias sociales y/o formación ciudadana. En concreto, se cuenta con los datos de 1635 estudiantes, 744 apoderados y 103 profesores. Los datos fueron producidos entre agosto y diciembre del año 2019. 
+
+El marco muestral utilizado para la selección de los establecimientos fue construido para la definición del universo, desde el Directorio de Establecimientos del Mineduc del año 2019, considerando todos los colegios de los sectores señalados. La selección fue aleatoria y sistemática, considerando localidad, dependencia administrativa (municipal, subvencionado o particular) y tipo de educación (Humanista científica, técnico profesional o mixto). La metodología de aplicación fue presencial y autoaplicada en el establecimiento para docentes y alumnos, siendo llevada a cabo por un encuestador especialmente entrenado para ello. En el caso de los apoderados fue autoaplicada en sus hogares.
+
+## Variables
+
+En la Tabla N° 1 se expone la variable dependiente de este estudio, la justificación de acciones disruptiva, junto a los dos indicadores que utilizaremos para medirla. En torno al proceso de medición se decidió utilizar, para las variables principales del estudio, la técnica de puntuaciones factoriales las cuales crean una nueva variable que posee menor error de medida y que refleja aquello que explica la varianza compartida entre los indicadores. En este caso, se busca medir la “_Justificación de protesta disruptiva_” mediante la justificación de corte de calles y tomas de establecimientos educativos. Para probar la validez de esta medida se realizará un análisis factorial confirmatorio con las dimensiones señaladas para padres y estudiantes, así como se utilizará el Alpha de Cronbach para evaluar la fiabilidad. Como criterios de análisis se utilizarán los señalados por Brown (2015): 
+
+*  SRMR cerca de 0.08 o menos
+* RMSEA cerca de 0.06 o menos 
+* CFI y TLI cerca de 0.95 o más
+
+
+
+```{r echo = FALSE}
+library(dplyr)
+library(kableExtra)
+library(htmlwidgets)
+cap1 <- "Variables dependientes."
+# if (knitr::is_html_output()) {tb <- table_nums("tb",cap)} else {tb <- cap}
+```
+
+```{r echo = FALSE}
+
+tab01 <- read.csv(file = "input/table01.csv",header = 1,sep = ";",encoding = "UTF-8")
+colnames(tab01) <- NULL
+
+cnames <- c("Dimensión", "Indicador","Pregunta", "Categorías de respuesta")
+cap1 <- "Variables dependientes."
+kable(tab01,"latex",booktabs = T, linesep = "",col.names = cnames, caption = cap1) %>%
+  kable_styling(
+    full_width = T,
+    latex_options = c("hold_position"),
+    position = "center",
+    font_size = 10,
+    bootstrap_options=c("striped", "bordered")) %>%
+  column_spec(column = 1, width = "2 cm", ) %>%
+  column_spec(column = 2,width = "3 cm") %>%
+  column_spec(column = 3,width = "5 cm") %>%
+  collapse_rows(columns = 1:3,valign = "middle")
+```
+
+```{r , echo = FALSE}
+cap2 <- "Variables independientes"
+# if (knitr::is_html_output()) {tb <- table_nums("tb",cap)} else {tb <- cap}
+```
+
+```{r , echo = FALSE}
+tab02 <- read.csv(file = "input/table02.csv",header = 1,sep = ";",encoding = "UTF-8")
+
+kable(tab02,"latex",booktabs = T, linesep = "",col.names =  c("Dimension","Variable","Pregunta","Categorías de respuesta"), caption = cap2) %>%
+  kable_styling(
+    full_width = T,
+    latex_options = c("hold_position"),
+    position = "center",
+    font_size = 10,
+    bootstrap_options=c("striped", "bordered")) %>%
+  column_spec(column = 1, width = "2 cm", ) %>%
+  column_spec(column = 2,width = "2 cm") %>%
+  column_spec(column = 3,width = "4 cm") %>%
+  column_spec(column = 4,width = "2 cm") %>%
+  collapse_rows(columns = 1:3,valign = "middle")
+```
+
+Las variables independientes se exponen en la Tabla N°2. Estas corresponden a critica a la desigualdad de padres y estudiantes, medido a partir de evaluación de la desigualdad y preferencia redistributiva. Además, se utilizara la variable nivel socioeconómico medida a partir de tramos de ingresos de los padres.  
+
+\newpage
+
+## Metodología
+
+Para evaluar las hipótesis se realizarán regresiones y mediaciones multinivel. Se utilizarán mediaciones ya que estas permiten comprender los mecanismos causales, es decir, en que medida se puede decir que la relación entre una variable y otra se debe a una variable mediadora [@hayes_Introduction_2018]. Se trabajará con técnicas de regresión multinivel, ya que estas son indispensables al estudiar muestras jerárquicas de colegios. Las regresiones multinivel, a diferencia de las regresiones normales, asumen que los estudiantes de un mismo establecimiento compartirán características debido al contexto común. Si se trabajara con regresiones lineales de un solo nivel, se rompería el supuesto de independencia de los casos en la muestra, ya que los casos están relacionados entre si al pertenecer a los mismos establecimientos. 
+
+La medición multinivel permite evaluar una cadena causal considerando la estructura jerárquica de los datos. Para comprender esta metodología, es necesario entender que una medicación corresponde al fenómeno según el cual una variable “X”, explica una variable “Y”, por medio de “M”, de tal modo que “X” genera “M” y M genera “Y” [@mathieu_framework_2007]. Al igual que en una mediación de un solo nivel, es requisito para comprobar la mediación multinivel, que “X” sea capaz de explicar tanto “M” como “Y”, y que, además, M sea capaz de explicar “Y”, controlando, en alguna medida el efecto de “X” [@baron_moderator_1986]. En nuestro caso, queremos evaluar la capacidad de la crítica a la desigualdad de padres e hijos para mediar la relación entre NSE y justificación de protesta disruptiva.
+
+Considerando las recomendaciones de [@zhang_Testing_2009] para cuando todas las variables del proceso de mediación se encuentran en el primer nivel, es fundamental, para evitar confusiones de los efectos producidas por la estructura jerárquica de la muestra, evaluar las relaciones en ambos niveles, es decir, un efecto de mediación intragrupo y otro entre grupos, para ello se deben realizar centrados en las medias de los grupos.
+
+\newpage
+
+# Analisis descriptivo
+
+En la tabla N°3  se puede ver la distribución de cada una de las variables de interés. También se puede apreciar que al juntar las variables y eliminar los perdidos de la base recortada, nos quedamos con un total de 636 casos para estimar los modelos. Cabe destacar que la perdida de casos se debe fundamental mente a la cantidad de padres que no respondieron la encuesta. 
+
+```{r , echo=FALSE, include=FALSE, results='asis'}
+pacman::p_load(summarytools,haven,sjPlot,dplyr,htmlwidgets, webshot)
+st_css()
+st_options(lang = "es",
+           footnote = NA,
+           bootstrap.css = F,
+           custom.css = "input/css/dfsummary.css")
+load(file = "input/data/ap_est.RData")
+
+table(ap_est$cortes)
+
+basereg <- ap_est %>% select(cortes,
+                             tomas,
+                             juicio_desigualdad_est,
+                             juicio_desigualdad_ap,
+                             redistriv_est,
+                             redistriv_ap,
+                             ingresos_pc,
+                             # rbd_est
+) %>% na.omit(basereg)
+
+df<- dfSummary(basereg,
+               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = 0.75,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = T, # plot
+               valid.col = T, # n valido
+               col.widths = c(1000,10,10,10,10)
+)
+df$Variable <- NULL # delete variable column
+view(df,file = "desc01.html")
+#webshot::install_phantomjs()
+webshot(url ="desc01.html" ,file ="output/tables/desc01.png")
+
+file.remove(c("desc01.html"))
+```
+
+```{r desc01, echo=FALSE, results='asis'}
+knitr::kable(data.frame(image='![](output/tables/desc01.png){width="500"}'),    # generar tabla
+             caption="Descriptivos apoderados y estudiantes",
+             col.names = "",
+             row.names = F,
+             format = "pandoc") %>%  kable_styling(latex_options = c("HOLD_position"),full_width = T)
+```
+
+
+
+```{r echo=FALSE}
+
+pacman::p_load(dplyr,ggplot2,sjPlot,tidyverse,sjlabelled)
+load(file = "input/data/est.RData")
+
+est_desc  = est %>% dplyr::select(RBD, pond_estudiante_reg_dep_tens, 
+                                pond_esc_reg_dep_tens, 
+                                juicio_desigualdad = P25A,
+                                redistriv =P25B,
+                                cortes = P35B,
+                                tomas= P35C)
+
+
+est_desc$juicio_desigualdad<-as.factor(est_desc$juicio_desigualdad) ## ojo
+est_desc$redistriv<-as.factor(est_desc$redistriv) ## ojo
+est_desc$cortes<-as.factor(est_desc$cortes)  ## ojo
+est_desc$tomas<-as.factor(est_desc$tomas)  ## ojo
+
+est_desc$juicio_desigualdad <- set_na(est_desc$juicio_desigualdad, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+est_desc$redistriv <- set_na(est_desc$redistriv, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+est_desc$cortes <- set_na(est_desc$cortes, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+est_desc$tomas <- set_na(est_desc$tomas, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+
+
+library(survey)
+library(srvyr)
+
+options(survey.lonely.psu = "certainty" )
+## Crear objeto tbl_svy
+ds <- est_desc %>% as_survey_design(#ids = RBD,  ## ids=1 (no hay conglomerado)
+                              weights = c("pond_estudiante_reg_dep_tens", "pond_esc_reg_dep_tens"))
+#pond_esc_reg_dep_tens
+
+
+
+
+est_redi = ds %>% group_by(redistriv) %>% 
+  summarise(porcentaje=survey_prop(na.rm = TRUE, vartype=c("ci"),level=c(0.95))*100) %>%
+  ggplot(aes(x=redistriv,y=porcentaje,fill=redistriv))+
+  geom_bar(stat = "identity") + 
+  geom_errorbar(aes(ymin=porcentaje_low, ymax=porcentaje_upp),
+                  width=0.2, position=position_dodge(.9)) +ggtitle("Redistribución Estudiantes") + ylab("Porcentaje") +  theme(legend.position = "none") + scale_y_continuous(limits = c(0, 60))  + xlab(" 
+        
+                                                                                                                                                                                                                                                                                                                                                                                                          ")
+
+## Adultos
+
+load(file = "input/data/ap.RData")
+
+ap_proc <- ap %>% dplyr::select(rbd = RBD,
+                               ingresos_tramos = P55,
+                               juicio_desigualdad = P10A,
+                               redistriv = P10B ,  personas_hogar = P41, pond_apoderado_reg_dep_tens, pond_esc_reg_dep_tens) 
+
+
+ap_proc$juicio_desigualdad<-as.factor(ap_proc$juicio_desigualdad) ## ojo
+ap_proc$redistriv<-as.factor(ap_proc$redistriv) ## ojo
+
+
+ap_proc$ingresos[ap_proc$ingresos_tramos == 1] <- 50500 
+ap_proc$ingresos[ap_proc$ingresos_tramos == 2] <- 117500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 3] <- 156500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 4] <- 201500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 5] <- 257500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 6] <- 324500
+ap_proc$ingresos[ap_proc$ingresos_tramos == 7] <- 403000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 8] <- 724000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 9] <- 1500000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 10] <- 2500000
+ap_proc$ingresos[ap_proc$ingresos_tramos == 11] <- 3500000
+
+# Construcción ingreso per capita
+ap_proc$ingresos_pc <- ap_proc$ingresos/ap_proc$personas_hogar
+ap_proc$ingresos_pc <- trunc(ap_proc$ingresos_pc)
+
+ap_proc$ingresos_pc<- set_na(ap_proc$ingresos_pc, na = c(99), drop.levels = TRUE, as.tag = FALSE)
+
+
+ap_proc$ingresos_tramos <- set_na(ap_proc$juicio_desigualdad, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+ap_proc$redistriv <- set_na(ap_proc$redistriv, na = c(5,9), drop.levels = TRUE, as.tag = FALSE)
+
+
+
+library(survey)
+library(srvyr)
+
+options(survey.lonely.psu = "certainty" )
+## Crear objeto tbl_svy
+ds <- ap_proc %>% as_survey_design(weights = c("pond_apoderado_reg_dep_tens","pond_esc_reg_dep_tens"))
+
+
+ap_redi =ds %>% group_by(redistriv) %>% 
+  summarise(porcentaje=survey_prop(na.rm = TRUE, vartype=c("ci"),level=c(0.95))*100) %>%
+  ggplot(aes(x=redistriv,y=porcentaje,fill=redistriv))+
+  geom_bar(stat = "identity") + 
+  geom_errorbar(aes(ymin=porcentaje_low, ymax=porcentaje_upp), width=0.2, position=position_dodge(.9)) + ggtitle("Redistribución Adultos") + scale_fill_discrete(name = " ", labels = c("Muy en desacuerdo", "En desacuerdo", "De acuerdo","Muy de acuerdo","Perdidos")) + ylab("Porcentaje") + scale_y_continuous(limits = c(0, 60)) + theme(legend.position = c(-.05,-.108), legend.direction = "horizontal") + xlab("
+                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ") 
+
+cowplot::plot_grid(est_redi, ap_redi,ncol=2)
+
+
+
+
+```
+ 
+
+
+En el grafico anterior se puede apreciar que tanto estudiantes como apoderados poseen un apoyo mayoritario a las políticas redistributivas. No obstante, el grado de acuerdo de los estudiantes es más moderado, siendo la categoría modal el estar “de acuerdo”, mientras que en apoderados la moda es “Muy de acuerdo”.  Estos altos valores de apoyo a la redistribución son coherentes con los datos registrados de la ISSP (Maldonado).
+
+```{r cortesredis, echo=FALSE}
+
+load(file = "input/data/ap_est.RData")
+basereg <- ap_est %>% select(cortes,
+                             tomas,
+                             juicio_desigualdad_est,
+                             juicio_desigualdad_ap,
+                             redistriv_est,
+                             redistriv_ap,
+                             ingresos_pc
+                             # rbd_est
+                             ) %>% na.omit(basereg)
+library(ggplot2)
+
+
+basereg$cortes_numeric<- as.numeric(basereg$cortes)
+
+basereg   %>%  ggplot(aes(cortes_numeric, group = redistriv_est)) + 
+          geom_bar(aes(y = ..prop.., fill = factor(..x..)), stat="count") + 
+          scale_y_continuous(labels=scales::percent) +
+          ylab("relative frequencies") + 
+          facet_grid(~redistriv_est) + theme(legend.position = "bottom") + xlab("Cuando se justifica hacer cortes de calle") + ggtitle("Justificación cortes según grado de acuerdo con la redistribución") + scale_fill_discrete(name = "", labels = c("1 = Nunca", "2 = Casi nunca", "3 = A veces", "4= Siempre")) + ylab("Porcentaje")
+
+
+```
+
+En la figura anterior, se grafíca la distribución de la justificación de cortes de calle, según el grado de acuerdo con las preferencias redistributivas. En general se puede apreciar una relación entre ambas variables en la dirección esperada. Si nos enfocamos en la barra azul que representa quienes consideran que a veces se justifican los cortes de calle, podemos ver que esta categoría crece en tanto se posee un mayor acuerdo con las políticas redistributivas,  lo cual ocurre de modo similar con la categoría siempre en morado. Análogamente, si nos enfocamos en la categoría “Nunca” referida a nunca se justifica un corte de calle (en color rosado), podemos ver que esta  posee más frecuencia en tanto menor es el grado de acuerdo con las políticas redistributivas. 
+
+
+
+```{r tomasdesig, echo=FALSE}
+
+
+load(file = "input/data/ap_est.RData")
+basereg <- ap_est %>% select(cortes,
+                             tomas,
+                             juicio_desigualdad_est,
+                             juicio_desigualdad_ap,
+                             redistriv_est,
+                             redistriv_ap,
+                             ingresos_pc,
+                             # rbd_est
+                             ) %>% na.omit(basereg)
+library(ggplot2)
+
+
+basereg$tomas_numeric <- as.numeric(basereg$tomas)
+
+
+basereg   %>%  ggplot(aes(tomas_numeric, group = juicio_desigualdad_est)) + 
+          geom_bar(aes(y = ..prop.., fill = factor(..x..)), stat="count") + 
+          scale_y_continuous(labels=scales::percent) +
+          ylab("relative frequencies") + 
+          facet_grid(~juicio_desigualdad_est) + theme(legend.position = "bottom") + xlab("Cuando se justifica tomar establecimientos educativos") + ggtitle("Justificación tomas según grado percepción de demasiada desigualdad") + scale_fill_discrete(name = "", labels = c("1 = Nunca", "2 = Casi nunca", "3 = A veces", "4= Siempre")) + ylab("Porcentaje")
+
+```
+
+En la figura anterior, se grafíca la distribución de la justificación de toma de establecimientos, según qué tan de acuerdo se está con que en Chile existe demasiada desigualdad. En general se puede apreciar una relación entre ambas variables en la dirección esperada, aunque menos consistente que en el grafico anterior. Si nos enfocamos en la barra azul que representa quienes consideran que a veces se justifican las tomas de establecimientos educativos, podemos ver que esta categoría crece en tanto se posee un mayor acuerdo con las políticas redistributivas,  lo cual ocurre de modo similar, aunque de modo menos marcado, con la categoría “siempre” (morado). Análogamente, si nos enfocamos en la categoría “Casi Nunca” referida a que casi nunca se justifica tomar un establecimiento (en color verde), podemos ver que esta posee más frecuencia en tanto menor es el grado de acuerdo con que en Chile existe demasiada desigualdad
+
+# Analisis multivariado 
+
+## Analisis de senderos 
+
+En el diagrama posterior se presenta el resultado del modelo. En general se cuenta con un modelo que presenta muy buenos parámetros de ajuste en base a los criterios de @brown_Confirmatory_2015, como se muestra en la tabla anterior y en el diagrama. Este modelo no permite evidenciar ninguna de las relaciones esperadas para el nivel socioeconómico. No obstante, entrega evidencia contundente sobre  el efecto de la crítica a la desigualdad sobre la justificación de la protesta disruptiva, así como entrega evidencia sobre el efecto de la socialización política familiar. 
+
+Respecto a la relación entre preferencias redistributivas y justificación de la protesta disruptiva se evidencia una fuerza de relación de gran intensidad según los parámetros de @cohen_Statistical_1988 Este es un efecto que puede extrapolarse a la población con un 99,9% de confianza.
+
+En torno a la relación entre preferencias redistributivas de padres e hijos se evidencia una fuerza de relación de gran intensidad según los parámetros de @cohen_Statistical_1988 Este es un efecto que puede extrapolarse a la población con un 99,9% de confianza.
+
+Como se menciono, las hipótesis de nivel socioeconómico no encuentran evidencia en este trabajo. Más precisamente, no se encuentra evidencia para aseverar que los ingresos de la familia afecten las preferencias redistributivas ni de padres ni de hijos, ni tampoco la justificación de la protesta disruptiva.
+
+![](input/images/modeloempirico.png)
+
+# Analisis multinivel (Pendiente)
+
+```{r, results='asis', echo = FALSE}
+
+load("input/data/basepuntaje.RData")
+
+library(mice)
+library(lavaan)
+library(stargazer)
+library(dplyr)
+library(sjPlot)
+library(tidyverse)
+library(texreg)
+# generate 5 multiple complete datasets
+
+
+
+
+cfa_red1 <- '
+	# variables latentes estudiantes
+	redistribucion_est =~ redistriv_est + juicio_desigualdad_est
+	#merit_atriv_est =~ atriv_pobr_esf_est + atriv_pobr_tal_est
+  #derechos_ig=~ educ_est +  salud_est
+	protesta  =~ cortes + tomas
+	
+	# variables latentes apoderado
+	redistribucion_ap =~ redistriv_ap + juicio_desigualdad_ap
+	#merit_atriv_ap =~ atriv_pobr_esf_ap + atriv_pobr_tal_ap
+  #derechos_ig_ap=~ educ_ap +  salud_ap
+  '
+
+
+# fit model for each complete dataset
+fit1 <- cfa(cfa_red1, data = basepuntaje)
+
+# predict scores for all models
+p1 <- predict(fit1)
+
+# compute 'average' across 5 sets of scores:
+scores <- (p1)
+
+#Generate factor scores
+scores_dat = as.data.frame(scores)
+
+# Adaptar base para agregar factor scores (sacar todos NA)
+basepuntaje = basepuntaje[rowSums(is.na(basepuntaje[1:7])) != 5, ]
+
+# Merge with factor scores
+basepuntaje = cbind(basepuntaje, scores)
+
+# Check
+#stargazer(basepuntaje[,8:10], type = "text")
+
+
+
+
+
+library(scales)
+#basepuntaje$protesta_100 <- rescale(basepuntaje$protesta, from = c(-1.5522, 1.1341 ), to = c(0, 100))3
+
+
+#basepuntaje =  basepuntaje %>% group_by(rbd_est) %>% mutate(protesta_rbd=mean(protesta))
+
+
+#basepuntaje$protesta_100 <- rescale(basepuntaje$protesta, from = c(-1.5522, 1.1341 ), to = c(0, 100))
+
+
+basepuntaje =  basepuntaje %>% group_by(rbd_est) %>% mutate(nse_rbd=mean(ingresos_pc))
+
+
+
+library(lme4)
+reg0a= lmer(redistribucion_est ~ 1 + (1|rbd_est), data=basepuntaje) 
+
+reg1a= lmer(redistribucion_est ~ 1  + nse_rbd+ (1|rbd_est), data=basepuntaje) 
+
+reg2a= lmer(redistribucion_est ~ 1  +  nse_rbd + redistribucion_ap + (1|rbd_est), data=basepuntaje) 
+
+
+##
+
+reg0b= lmer(protesta ~ 1 + (1|rbd_est), data=basepuntaje) 
+
+reg1b= lmer(protesta ~ 1  + nse_rbd + (1|rbd_est), data=basepuntaje) 
+
+reg3b= lmer(protesta ~ 1  + nse_rbd  + redistribucion_ap + (1|rbd_est), data=basepuntaje) 
+
+reg5b= lmer(protesta ~ 1  + nse_rbd   + redistribucion_est +  (1|rbd_est), data=basepuntaje) 
+
+reg5b= lmer(protesta ~ 1  + nse_rbd  + redistribucion_ap + redistribucion_est +  (1|rbd_est), data=basepuntaje) 
+
+
+#screenreg(list(reg0a,reg1a,reg2a,reg0b,reg1b,reg3b,reg5b))
+knitreg(list(reg0a,reg1a,reg2a,reg0b,reg1b,reg3b,reg5b),
+        #caption = paste("(\\#tab:getah)",cap1),
+        custom.header = list("Preferencias redistributivas" = 1:3, "Protesta disruptiva" = 4:7),
+        caption.above=TRUE,
+        font_size ="small",
+        custom.gof.rows=list(Controls=c("No","No","No","Yes","Yes","Yes","Yes")),
+        # groups=list("Perc. Meritocracia (apoderado)"=1:3, 
+        #             "Setido justicia (indirecto)"=4:6,
+        #             "Sentido justicia (directo)"=7:8),
+        
+        custom.coef.names=c("Intercept","NSE-Esc","Redis-Padres","Redis-Est"),
+        custom.note="*** p < 0.001; ** p < 0.01; * p < 0.05; ¹'Es importante' (Muy importante + Importante + Algo Importante) y 'No es importante' (Nada importante)"
+        )
+
+```
+
+* Los parametros permiten inferir una mediación, que a diferencia del analisis con un nivel incluye efectos de lo socioeconomico.
+
+
+
+\newpage
+
+# Discusión
+
+En vista de los resultados se pueden realizar tres puntos de discusión con las teorías actuales. En primer lugar, se puede aportar evidencia a las teorías y reflexiones que señalan los peligros de las sensaciones de injusticia.  Como se mencionó, existen un conjunto de autores que señalan las consecuencias de las sensaciones de injusticia sobre lo cívico [@sabbagh_Spheres_2006] e incluso se ha propuesto que las sensaciones de injusticia de los jóvenes frente a la desigualdad pueden generar insubordinación [@easterbrook_social_2021]. Nuestros resultados otorgan evidencia que permite respaldar estas ideas en el contexto de la juventud chilena.  
+Además, se ha señalado que las vivencias en países que no logran garantizar los derechos se asocian a visiones del ciudadano más cercanas a la idea de acción ciudadana que a la dimensión de obediencia civil [@hooghe_comparative_2016]. Sobre dicha investigación nuestra evidencia no permite respaldar ni refutar directamente nada, no obstante, si permite hacer algunas reflexiones. Primero, siendo Chile un país como los descritos por el autor, se podría hipotetizar que el efecto de la desigualdad observado por el autor se pude atribuir a las creencias y opiniones de los jóvenes sobre dicha desigualdad. Aunque en nuestro caso el NSE familiar no genera un efecto, se podría pensar que jóvenes de mayor estatus que observan la desigualdad adquieren opiniones críticas sobre la misma, lo cual fomenta, independiente de su posición, una disposición a la participación ciudadana activa en pos de esos cambios, incluso pasando a llevar la dimensión civil de la ciudadanía. Para dar respaldo a estas elucubraciones se requeriría un escrutinio empírico con datos internacionales.  
+
+En segundo lugar, nuestros resultados permiten reflexionar sobre la socialización política familiar. Se puede aportar a estas teorías incorporando un nuevo ámbito que puede ser transmitido familiarmente, las creencias asociadas a la economía moral, como la crítica a la desigualdad y las preferencias redistributivas. La información producida con cuestionarios a padres y estudiantes puede ser un aporte a las investigaciones que sugieren la importancia de la socialización en la preferencia redistributiva a partir de datos basados en cohortes y periodos [@legarrec_Distributive_2015].  No obstante, hay que ser claros en torno al hecho de que la evidencia producida no permite discernir la dirección del efecto, y por ende no podemos saber si los hijos influencian a sus padres o es, como se propone, al revés. Como señala @andersson_Situational_2015, asumir que la dirección va de padres a hijos puede suponer un sesgo adultocéntrico.  Resolver este sesgo en la literatura utilizada de base sobrepasa los objetivos de este estudio, no obstante, considerando esta crítica, es mejor aseverar que las familias comparten creencias, antes de afirmar que estas circulan desde tal a tal familiar. 
+
+En tercer lugar, nuestra evidencia permite cuestionar hasta cierto punto una afirmación proveniente de los estudios de economía moral. Pese a que se podría esperar que la desigualdad fomente una mayor critica de la misma, la evidencia parece indicar que sociedades más desiguales fomentan discursos afines en sus ciudadanos [@solt_Economic_2016]. Esto ha llevado a afirmar que la desigualdad se justifica a sí misma. No obstante, considerando el rol que juega las opiniones sobre la desigualdad en chile en los procesos de cambio político, esta aseveración puede ser puesta en tela de juicio, ya que existe la posibilidad de que la desigualdad no logre justificarse, se fomenten preferencias redistributivas y que estas presionen hacia cambios políticos. 
+
+# Conclusiones
+
+A modo de síntesis se destacan tres puntos de lo evidenciado. En primer lugar, considerando el bajo efecto del NSE en las preferencias redistributivas y en la justificación de la protesta disruptiva, así como los altos niveles de apoyo de ambas ideas, se puede decir que la crítica radical a la desigualdad es un asunto más bien compartido entre distintos grupos sociales. 
+
+En segundo lugar, se evidencia la relación entre preferencias redistributivas y protesta disruptiva, lo cual da cuenta de la importancia de las percepciones ciudadanas para mantener el orden y la paz social, dicho metafóricamente “quien siembra justicia social cosecha paz”
+
+En tercer lugar, se destaca que las hipótesis de transmisión intergeneracional de creencias políticas son aplicables igualmente a las creencias económico-morales sobre la legitimación de la desigualdad. Aunque no se pueda despejar la direccionalidad de la relación, la consistencia de creencias dentro de la familia es un hecho que amerita indagación.
+
+
+
+
+# Bibliografía

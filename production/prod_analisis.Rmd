@@ -1,0 +1,398 @@
+---
+title: "prod_analisis"
+author: "Francisco Meneses"
+date: "09-07-2021"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+```
+
+
+
+
+## Analisis multinivel con puntajes factoriales 
+```{r}
+
+load("../input/data/basepuntaje.RData")
+
+library(mice)
+library(lavaan)
+library(stargazer)
+library(dplyr)
+library(sjPlot)
+library(tidyverse)
+library(texreg)
+# generate 5 multiple complete datasets
+
+
+
+
+cfa_red1 <- '
+	# variables latentes estudiantes
+	redistribucion_est =~ redistriv_est + juicio_desigualdad_est
+	#merit_atriv_est =~ atriv_pobr_esf_est + atriv_pobr_tal_est
+  #derechos_ig=~ educ_est +  salud_est
+	protesta  =~ cortes + tomas
+	
+	# variables latentes apoderado
+	redistribucion_ap =~ redistriv_ap + juicio_desigualdad_ap
+	#merit_atriv_ap =~ atriv_pobr_esf_ap + atriv_pobr_tal_ap
+  #derechos_ig_ap=~ educ_ap +  salud_ap
+  '
+
+
+# fit model for each complete dataset
+fit1 <- cfa(cfa_red1, data = basepuntaje)
+
+# predict scores for all models
+p1 <- predict(fit1)
+
+# compute 'average' across 5 sets of scores:
+scores <- (p1)
+
+#Generate factor scores
+scores_dat = as.data.frame(scores)
+
+# Adaptar base para agregar factor scores (sacar todos NA)
+basepuntaje = basepuntaje[rowSums(is.na(basepuntaje[1:7])) != 5, ]
+
+# Merge with factor scores
+basepuntaje = cbind(basepuntaje, scores)
+
+# Check
+stargazer(basepuntaje[,8:10], type = "text")
+
+
+basepuntajecor = basepuntaje %>% select(redistribucion_est, 
+                                        protesta,
+                                        redistribucion_ap, 
+                                        ingresos_pc)
+sjp.corr(basepuntajecor, na.deletion = c("listwise"),show.p =T, decimals = 3, axis.labels = c("Redistribución estudiantes", "Protesta Disruptiva","Reidstribución Padres","Ingresos (p/c)")) 
+
+
+```
+
+```{r results='asis'}
+
+basepuntaje$ingresos_pc_cien=as.numeric(basepuntaje$ingresos_pc*100000)
+
+library(scales)
+basepuntaje$protesta_100 <- rescale(basepuntaje$protesta, from = c(-1.5522, 1.1341 ), to = c(0, 100))
+
+
+
+summary(basepuntaje$protesta)
+summary(basepuntaje$protesta_100)
+
+
+reg0=lm(redistribucion_est ~ ingresos_pc_cien, data=basepuntaje) 
+reg1=lm(redistribucion_est ~ ingresos_pc_cien + redistribucion_ap, data=basepuntaje) 
+
+reg0_0=lm(protesta_100 ~ 1 ,data=basepuntaje) 
+reg2=lm(protesta_100 ~ ingresos_pc_cien, data=basepuntaje) 
+reg3=lm(protesta_100 ~ ingresos_pc_cien + redistribucion_ap, data=basepuntaje) 
+reg4=lm(protesta_100 ~ ingresos_pc_cien + redistribucion_ap + redistribucion_est, data=basepuntaje) 
+
+
+library(texreg)
+
+screenreg(list(reg0,reg1,reg0_0, reg2,reg3,reg4), type="text")
+
+#knitreg(list(reg0,reg1,reg0_0, reg2,reg3,reg4),
+#        caption = paste("(\\#tab:getah)",cap1),
+#        custom.header = list("Preferencias redistributivas" = 1:3, "Protesta disruptiva" = 4:6),
+#        caption.above=TRUE,
+#        omit.coef=omit_coef,
+#        include.thresholds=FALSE,
+#        custom.gof.rows=list(Controls=c("No","No","No","Yes","Yes","Yes","Yes")),
+        # groups=list("Perc. Meritocracia (apoderado)"=1:3, 
+        #             "Setido justicia (indirecto)"=4:6,
+        #             "Sentido justicia (directo)"=7:8),
+#        custom.coef.names=coef_names,
+#        custom.note="*** p < 0.001; ** p < 0.01; * p < 0.05; ¹'Es importante' (Muy importante + Importante + Algo Importante) #y 'No es importante' (Nada importante)"
+#        )
+
+
+```
+
+
+
+```{r, results='asis'}
+
+load("../input/data/basepuntaje.RData")
+
+library(mice)
+library(lavaan)
+library(stargazer)
+library(dplyr)
+library(sjPlot)
+library(tidyverse)
+library(texreg)
+# generate 5 multiple complete datasets
+
+
+
+
+cfa_red1 <- '
+	# variables latentes estudiantes
+	redistribucion_est =~ redistriv_est + juicio_desigualdad_est
+	#merit_atriv_est =~ atriv_pobr_esf_est + atriv_pobr_tal_est
+  #derechos_ig=~ educ_est +  salud_est
+	protesta  =~ cortes + tomas
+	
+	# variables latentes apoderado
+	redistribucion_ap =~ redistriv_ap + juicio_desigualdad_ap
+	#merit_atriv_ap =~ atriv_pobr_esf_ap + atriv_pobr_tal_ap
+  #derechos_ig_ap=~ educ_ap +  salud_ap
+  '
+
+
+# fit model for each complete dataset
+fit1 <- cfa(cfa_red1, data = basepuntaje)
+
+# predict scores for all models
+p1 <- predict(fit1)
+
+# compute 'average' across 5 sets of scores:
+scores <- (p1)
+
+#Generate factor scores
+scores_dat = as.data.frame(scores)
+
+# Adaptar base para agregar factor scores (sacar todos NA)
+basepuntaje = basepuntaje[rowSums(is.na(basepuntaje[1:7])) != 5, ]
+
+# Merge with factor scores
+basepuntaje = cbind(basepuntaje, scores)
+
+# Check
+#stargazer(basepuntaje[,8:10], type = "text")
+
+
+
+
+
+library(scales)
+#basepuntaje$protesta_100 <- rescale(basepuntaje$protesta, from = c(-1.5522, 1.1341 ), to = c(0, 100))3
+
+
+#basepuntaje =  basepuntaje %>% group_by(rbd_est) %>% mutate(protesta_rbd=mean(protesta))
+
+
+#basepuntaje$protesta_100 <- rescale(basepuntaje$protesta, from = c(-1.5522, 1.1341 ), to = c(0, 100))
+
+
+basepuntaje =  basepuntaje %>% group_by(rbd_est) %>% mutate(nse_rbd=mean(ingresos_pc))
+
+
+
+library(lme4)
+reg0a= lmer(redistribucion_est ~ 1 + (1|rbd_est), data=basepuntaje) 
+
+reg1a= lmer(redistribucion_est ~ 1  + nse_rbd+ (1|rbd_est), data=basepuntaje) 
+
+reg2a= lmer(redistribucion_est ~ 1  +  nse_rbd + redistribucion_ap + (1|rbd_est), data=basepuntaje) 
+
+
+##
+
+reg0b= lmer(protesta ~ 1 + (1|rbd_est), data=basepuntaje) 
+
+reg1b= lmer(protesta ~ 1  + nse_rbd + (1|rbd_est), data=basepuntaje) 
+
+reg3b= lmer(protesta ~ 1  + nse_rbd  + redistribucion_ap + (1|rbd_est), data=basepuntaje) 
+
+reg5b= lmer(protesta ~ 1  + nse_rbd   + redistribucion_est +  (1|rbd_est), data=basepuntaje) 
+
+reg5b= lmer(protesta ~ 1  + nse_rbd  + redistribucion_ap + redistribucion_est +  (1|rbd_est), data=basepuntaje) 
+
+
+#screenreg(list(reg0a,reg1a,reg2a,reg0b,reg1b,reg3b,reg5b))
+knitreg(list(reg0a,reg1a,reg2a,reg0b,reg1b,reg3b,reg5b),
+        #caption = paste("(\\#tab:getah)",cap1),
+        custom.header = list("Preferencias redistributivas" = 1:3, "Protesta disruptiva" = 4:7),
+        caption.above=TRUE,
+        custom.gof.rows=list(Controls=c("No","No","No","Yes","Yes","Yes","Yes")),
+        # groups=list("Perc. Meritocracia (apoderado)"=1:3, 
+        #             "Setido justicia (indirecto)"=4:6,
+        #             "Sentido justicia (directo)"=7:8),
+        custom.coef.names=c("Intercept","NSE-Esc","Redis-Padres","Redis-Est"),
+        custom.note="*** p < 0.001; ** p < 0.01; * p < 0.05; ¹'Es importante' (Muy importante + Importante + Algo Importante) y 'No es importante' (Nada importante)"
+        )
+
+```
+
+ > La correlación intra clase  de redistribución es de .17, es decir el 17% de la varianza corresponde a nivel 2, es decir, variación entre escuelas. Es un resultado interesante pues da cuenta de una cultura comun en los estudiantes dentro de un aula, lo que es consistente con el hecho de la participación colectiva. 
+
+> la correlación intraclase de la protesta es de 7%
+
+> el efecto controlado de redistribucion de los padres por la de os hijos es negativa por que significa, "el efecto de los padres cuando la crenecia de los hijos esta en cero, que estando centrado es el promedio, y ya que el promedio es alto, es en esa condicion. Fuera del efecto de los padres.
+
+
+```{r}
+library(lmerTest)
+library(mediation)
+library(bda)
+
+
+# no me esta funcionando  
+
+#med= lmer(redistribucion_est ~ 1  + nse_rbd+ (1|rbd_est), data=basepuntaje) 
+
+#out= lmer(protesta ~ 1  + nse_rbd   + redistribucion_est +  (1|rbd_est), data=basepuntaje) 
+
+#
+#med.outq2 <- mediation::mediate(med, out, treat = "nse_rbd", mediator = "redistribucion_est",sims = 1000, #robustSE = TRUE)
+
+```
+
+
+# Analisis multivariado 
+
+## Analisis de senderos 
+
+```{r}
+
+load("../input/data/basepuntaje.RData")
+
+library(mice)
+library(lavaan)
+library(kableExtra)
+
+#basepuntaje$rbd_est=basepuntaje$rbd_est %>% as.numeric()
+
+# generate 5 multiple complete datasets
+
+
+
+
+cfa_red_sem <- '
+	# variables latentes estudiantes
+	redistribucion_est =~ redistriv_est + juicio_desigualdad_est
+	#merit_atriv_est =~ atriv_pobr_esf_est + atriv_pobr_tal_est
+  #derechos_ig=~ educ_est +  salud_est
+	protesta  =~ cortes + tomas
+	
+	# variables latentes apoderado
+	redistribucion_ap =~ redistriv_ap + juicio_desigualdad_ap
+	#merit_atriv_ap =~ atriv_pobr_esf_ap + atriv_pobr_tal_ap
+  #derechos_ig_ap=~ educ_ap +  salud_ap
+  
+ redistribucion_ap ~ ingresos_pc
+ redistribucion_est ~ redistribucion_ap  
+ protesta ~ redistribucion_est    
+  '
+
+fitlavaan1=lavaan::sem(cfa_red_sem, basepuntaje, ordered=c("redistriv_est","juicio_desigualdad_est","cortes","tomas","redistriv_ap","juicio_desigualdad_ap")) 
+
+summary(fitlavaan1,fit.measures=T)
+
+fitlavaan1
+
+
+sum_fit<- dplyr::bind_rows(fitmeasures(fitlavaan1)[c("chisq","df","pvalue","cfi","tli","rmsea","srmr")])
+
+# Customize object
+sum_fit$mod <- c("Modelo de Estructura")
+sum_fit$nobs <- c(nobs(fitlavaan1))
+sum_fit$est <- c("DWLS")
+sum_fit$chidl <- as.numeric(sum_fit$chisq/sum_fit$df)
+sum_fit <- sum_fit %>% dplyr::select(mod,nobs,est, chisq, pvalue, df, chidl, everything())
+colnames <- c("Model","$N$","Estimator","$\\chi^2$","P","df","$\\chi^2$/df","CFI","TLI","RMSEA","SRMR")
+
+# Create table
+table_cfa_fits <-kable(sum_fit, format="latex", digits=3, booktabs=T,col.names=colnames,   caption = "Ajuste de modelo del estructura", escape = FALSE) %>% kable_styling(full_width = F, font_size = 20)
+table_cfa_fits
+
+
+```
+
+```{r}
+
+semPlot::semPaths(fitlavaan1, layout= "tree" , "std", "est", intercepts = FALSE, residuals = F)
+
+
+```
+
+![](../input/images/modeloempirico.png)
+
+
+
+# Bibliografía
+
+
+
+
+
+# Modelo de efecto total 
+
+```{r}
+
+load("../input/data/basepuntaje.RData")
+
+library(mice)
+library(lavaan)
+library(kableExtra)
+#basepuntaje$rbd_est %>% class()
+#basepuntaje$rbd_est=basepuntaje$rbd_est %>% as.numeric()
+
+# generate 5 multiple complete datasets
+
+
+
+
+cfa_red_sem <- '
+	# variables latentes estudiantes
+	#redistribucion_est =~ redistriv_est + juicio_desigualdad_est
+	#merit_atriv_est =~ atriv_pobr_esf_est + atriv_pobr_tal_est
+  #derechos_ig=~ educ_est +  salud_est
+	protesta  =~ cortes + tomas
+	
+	# variables latentes apoderado
+	redistribucion_ap =~ redistriv_ap + juicio_desigualdad_ap
+	#merit_atriv_ap =~ atriv_pobr_esf_ap + atriv_pobr_tal_ap
+  #derechos_ig_ap=~ educ_ap +  salud_ap
+  
+  # relaciones
+ redistribucion_ap ~ ingresos_pc
+ #redistribucion_est ~ redistribucion_ap  
+ protesta ~ ingresos_pc
+  '
+
+fitlavaan1=lavaan::sem(cfa_red_sem, basepuntaje, ordered=c("cortes","tomas","redistriv_ap","juicio_desigualdad_ap")) 
+
+summary(fitlavaan1,fit.measures=T)
+
+fitlavaan1
+
+
+sum_fit<- dplyr::bind_rows(fitmeasures(fitlavaan1)[c("chisq","df","pvalue","cfi","tli","rmsea","srmr")])
+
+# Customize object
+sum_fit$mod <- c("Modelo de Estructura")
+sum_fit$nobs <- c(nobs(fitlavaan1))
+sum_fit$est <- c("DWLS")
+sum_fit$chidl <- as.numeric(sum_fit$chisq/sum_fit$df)
+sum_fit <- sum_fit %>% dplyr::select(mod,nobs,est, chisq, pvalue, df, chidl, everything())
+colnames <- c("Model","$N$","Estimator","$\\chi^2$","P","df","$\\chi^2$/df","CFI","TLI","RMSEA","SRMR")
+
+# Create table
+table_cfa_fits <-kable(sum_fit, format="latex", digits=3, booktabs=T,col.names=colnames,   caption = "Ajuste de modelo del estructura", escape = FALSE) %>% kable_styling(full_width = F, font_size = 20)
+table_cfa_fits
+
+
+```
+
+Este modelo es significativo, y existen los efectos negativos esperados aunque 
+
+
+
+```{r}
+
+semPlot::semPaths(fitlavaan1, layout= "tree" , "std", "est", intercepts = FALSE, residuals = F)
+
+```

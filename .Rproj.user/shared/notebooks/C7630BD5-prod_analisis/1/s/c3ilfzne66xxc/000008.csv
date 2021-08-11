@@ -1,0 +1,6 @@
+"0","load(""input/data/basepuntaje.RData"")
+"
+"2","cannot open compressed file 'input/data/basepuntaje.RData', probable reason 'No such file or directory'"
+"2","Error in readChar(con, 5L, useBytes = TRUE) : 
+  no se puede abrir la conexión
+"
