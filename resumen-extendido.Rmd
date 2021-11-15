@@ -1,7 +1,7 @@
 ---
 title: "Repensando la relación entre desigualdad y ciudadanía desde la economía moral"
 author: "Francisco Meneses, Juan Carlos Castillo, Julio Iturra, Martin Venegas"
-date: "29-04-2021"
+date: "12-08-2021"
 output:
   bookdown::pdf_document2:
     template: null
@@ -41,8 +41,15 @@ knitr::opts_chunk$set(message = FALSE)
 Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
 ```
 
+\footnotesize
+\hfill _Agradecimientos al Fondecyt N°1181239_
 
-# Sensación de injusticia y protesta con violencia: 
+\hfill 
+
+\normalsize
+
+
+# Sensación de injusticia y protesta disruptiva: 
 
 La advertencia de sociólogos como Manuel Garretón se ha transformado en una realidad evidenciable:  _La desigualdad amenaza con socavar la democracia_ [@garreton_ciencias_2014; @currie_desigualdad_2017; @sandel_tirania_2021]. Las consecuencias de la desigualdad en la política han mutado en Chile durante los últimos años. La apatía política de jóvenes y sectores vulnerables se transforma en una creciente politización [@paletaraneda_tiempos_2015]. Esta politización tiene rasgos activistas, fuera de lo institucional [@munoz-tamayo_jovenes_2019] y, en algunas ocasiones, posee rasgos de acción directa o disruptiva [@ale_Saltar_2021]. Una cultura de la participación basada en el enfrentamiento violento no es propicia para mantener la democracia, por ello es menester preguntarse ¿Qué es lo que motiva a que algunos jóvenes legitimen (y otros no)  actos violentos de protesta? Esta investigación propone que es la crítica a la desigualdad la que fomenta la legitimidad de dichos actos.
 
@@ -55,7 +62,7 @@ Considerando estas visiones críticas a la desigualdad se propone que estas fome
 
 # Metodología
 
-Para abordar esta investigación se utilizará la encuesta PACES producida en el marco del Fondecyt n°1181239, la cual encuestó a 1483 estudiantes de 64 colegios en tres grandes regiones del país. Las variables principales del estudio serán la justificación de la protesta disruptiva y la crítica a la desigualdad de los estudiantes. La operacionalización se expone en la tabla N°1.  Se decidió utilizar como metodología análisis multinivel dada la estructura jerárquica de la muestra. En la Tabla N°1 se expone las variables de este estudio, las cuales serán estimadas con puntuaciones factoriales con los indicadores señalados en la misma tabla.
+Para abordar esta investigación se utilizó la encuesta PACES producida en el marco del Fondecyt n°1181239, la cual encuestó a 1483 estudiantes de 64 colegios en tres grandes regiones del país. Las variables principales del estudio serán la justificación de la protesta disruptiva y la crítica a la desigualdad de los estudiantes.  Como metodología se utilizó el análisis multinivel dada la estructura jerárquica de la muestra. En la Tabla N°1 se expone las variables de este estudio, las cuales serán estimadas con puntuaciones factoriales con los indicadores señalados en la misma tabla.
 
 
 
@@ -175,7 +182,7 @@ options(survey.lonely.psu = "certainty" )
 
 ## Crear objeto tbl_svy
 ds <- est_desc %>% as_survey_design(#ids = RBD,  ## ids=1 (no hay conglomerado)
-                              weights = c("pond_estudiante_reg_dep_tens", "pond_esc_reg_dep_tens"))
+                              weights = c("pond_estudiante_reg_dep_tens"))
 #pond_esc_reg_dep_tens
 
 
@@ -199,7 +206,7 @@ ggsave(cowplot::plot_grid(redi_sicortes, redi_nocortes,ncol=2),file="output/graf
 ![]("output/graf.png")
 \newpage
 
-En la tabla numero dos se expone el análisis multinivel. En primer lugar, como se señala en el modelo nulo, 10% de la varianza de la justificación de la protesta disruptiva corresponde a variación entre escuelas, lo cual es interesante porque sugiere opiniones parcialmente compartidas entre compañeros. Seguidamente se puede observar el modelo “Control” el cual solo incluye el efecto del NSE medido mediante el proxy de dependencia administrativa, variable la cual, si bien tiene un efecto significativo al 95% de confianza, posee un tamaño de efecto insignificante.  En el modelo “Independiente” se observa el efecto total de la crítica hacia la desigualdad sobre la justificación de las protestas disruptivas, este es un efecto significativo con un 99,9% de confianza. La crítica a la desigualdad sobre la justificación de cortes explica el 25% de la varianza individual y el 60% de la grupal, explicando el 31% de la varianza total, lo que implica una relación de moderado a grande según los parámetros de @cohen_Statistical_1988.  Este efecto se mantiene pese a ser controlado por la dependencia del establecimiento.
+En la Tabla N°2 se expone el análisis multinivel. En primer lugar, como se señala en el modelo nulo, 10% de la varianza de la justificación de la protesta disruptiva corresponde a variación entre escuelas, lo cual es interesante porque sugiere opiniones parcialmente compartidas entre compañeros. Seguidamente se puede observar el modelo “Control” el cual solo incluye el efecto del NSE medido mediante el proxy de dependencia administrativa, variable la cual, si bien tiene un efecto significativo al 95% de confianza, posee un tamaño de efecto insignificante.  En el modelo “Independiente” se observa el efecto total de la crítica hacia la desigualdad sobre la justificación de las protestas disruptivas, este es un efecto significativo con un 99,9% de confianza. La crítica a la desigualdad sobre la justificación de cortes explica el 25% de la varianza individual y el 60% de la grupal, explicando el 31% de la varianza total, lo que implica una relación de moderado a grande según los parámetros de @cohen_Statistical_1988.  Este efecto se mantiene pese a ser controlado por la dependencia del establecimiento.
 
 
 ```{r, results='asis', echo = FALSE}
@@ -306,7 +313,7 @@ knitreg(list(reg0,reg1,reg2,reg3),custom.coef.names=c("Intercepto","Subvensionad
 
 # Conclusión
 
-En suma, se puede observar como la crítica a la desigualdad social fomenta la justificación de la participación disruptiva. Dicha relación es sumamente relevante para comprender la situación actual y proyectar la democracia, pues debemos lograr una sociedad más justa para que sea sostenible [@gamez_Objetivos_2021]. Esto refuerza la relación entre sentido de justicia y ciudadanía señalada por @sabbagh_Spheres_2006.  En conclusión, la desigualdad no solo afecta directamente la disposición a participación,  sino que también afecta los modos de participación, haciéndolos más violentos. A modo de refrán se puede decir que quien “Siembra justicia social cosecha paz y estabilidad democrática”.
+En suma, existe evidencia para sostener que la crítica a la desigualdad fomenta la justificación de la protesta disruptiva. Dicha relación es sumamente relevante para comprender la situación actual y proyectar la democracia, pues debemos lograr una sociedad más justa para que sea sostenible [@gamez_Objetivos_2021]. Esto refuerza la relación entre sentido de justicia y ciudadanía señalada por @sabbagh_Spheres_2006.  En conclusión, la desigualdad no solo afecta directamente la disposición a participación,  sino que también afecta los modos de participación, haciéndolos más violentos. A modo de refrán se puede decir que quien “Siembra justicia social cosecha paz y estabilidad democrática”.
 
 
 
