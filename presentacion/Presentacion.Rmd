@@ -205,7 +205,7 @@ class: slideInRight, middle, inverse
 ---
 # Correlaciones
 
-![:scale 70%](https://raw.githubusercontent.com/franciscomeneses/protesta-redistributiva/main/presentacion/images/corr-alternativa.PNG)
+![](https://raw.githubusercontent.com/franciscomeneses/protesta-redistributiva/main/presentacion/images/corr-alternativa.PNG)
 
 ---
 class: center
