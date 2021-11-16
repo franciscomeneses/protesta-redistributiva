@@ -93,7 +93,7 @@ Garretón, 2014 ; Sandel, 2021)
 
   + Familia y desigualdad
 
-.center[![](images/saltareltorniquete.png)]
+.center[![:scale 55%](images/saltareltorniquete.png)]
 
 ???
 
@@ -205,7 +205,7 @@ class: slideInRight, middle, inverse
 ---
 # Correlaciones
 
-![](https://raw.githubusercontent.com/franciscomeneses/protesta-redistributiva/main/presentacion/images/corr-alternativa.PNG)
+![](images/corr-alternativa.PNG)
 
 ---
 class: center
@@ -226,3 +226,8 @@ $n$=491 $\chi^2$ $(gl)$=22.056 (12), $p-value$ = 0.037, $CFI$ = 0.992, $RMSEA$ =
 3. Redistribución y protesta
 
 ![](images/modelofinal.png)
+
+---
+class: center, invert, middle
+
+# ¡Muchas gracias!
