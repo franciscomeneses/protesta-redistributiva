@@ -29,7 +29,7 @@ xaringanExtra::use_progress_bar(color = "red", location = "top", height = "100em
 
 # __Repensando la relación entre desigualdad y ciudadanía desde la economía moral__
 
-# EEl rol de la crítica a la desigualdad en la justificación de la protesta disruptiva
+# El rol de la crítica a la desigualdad en la justificación de la protesta disruptiva
 
 <br>
 <hr>
