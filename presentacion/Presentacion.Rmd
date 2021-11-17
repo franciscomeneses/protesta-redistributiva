@@ -27,9 +27,9 @@ xaringanExtra::use_progress_bar(color = "red", location = "top", height = "100em
 ```
 
 
-# __Desigualdad, familia y protesta__
+# __Repensando la relación entre desigualdad y ciudadanía desde la economía moral__
 
-# El rol de la transmisión de las preferencias redistributivas en la justificación de la protesta radical de secundarios
+# EEl rol de la crítica a la desigualdad en la justificación de la protesta disruptiva
 
 <br>
 <hr>
@@ -102,7 +102,7 @@ class: slideInRight, middle, inverse
 ---
 # Problematización: 
 
-* Chile desigualdad y economía moral (Currie, 2017;
+* Chile, desigualdad y economía moral (Currie, 2017;
 Garretón, 2014 ; Sandel, 2021)
 
 *  La historia de Vilma en "Saltar el torniquete"
@@ -128,7 +128,7 @@ _Socialización política_ (Miranda & Castillo, 2021)
 
 * $H_1$: Las preferencias redistributivas son transmitidas de padres a hijos
 
-_interés racional_ (Koos & Sachweh, 2019; Andreoli & Olivera, 2020)
+_Interés racional_ (Koos & Sachweh, 2019; Andreoli & Olivera, 2020)
 
 * $H_2$: Padres con menor nivel socioeconómico tendrán mayores preferencias redistributivas.
 
