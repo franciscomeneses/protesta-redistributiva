@@ -3,15 +3,20 @@
   <head>
     <title>Reporte de resultados</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="libs/animate.css-3.7.2/animate.xaringan.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
     <link rel="stylesheet" href="xaringan_custom/xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="xaringan_custom/progress-bar.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 
 class: slideInRight, middle, inverse
+
+
+
 
 # __Desigualdad, familia y protesta__
 
@@ -27,6 +32,11 @@ class: slideInRight, middle, inverse
 * Juan Carlos Castillo, Coinvestigador 
 * Julio Iturra, Coordinador
 * Martín Venegas, Ayudante de investigación] 
+
+---
+
+layout: true
+class: animated, fadeIn
 
 ---
 class: slideInRight, middle, inverse
@@ -182,31 +192,29 @@ class: slideInRight, middle, inverse
 * Ecuaciones de Senderos Estructurales (SEM): Permite evaluar la relación entre constructos latentes
 
 ---
-
 class: slideInRight, middle, inverse
+
 ***
-# Resultados:
+# Resultados
 ***
 ---
-# Descriptivos
+.center[
+![:scale 75%](images/Plot-lik-trabajoduro.png)
 
-![:scale 80%](images/Plot-lik-trabajoduro.png)
-
-
+]
 ---
 # Bivariado
-
+.center[
 ![:scale 80%](images/Plot-lik-getahead.png)
-
+]
 
 ---
 # Correlaciones
 
+.center[
 ![](images/corr-alternativa.PNG)
-
+]
 ---
-class: center
-# Modelo
 
 ![:scale 90%](images/modelosem.png)
 
@@ -225,14 +233,18 @@ class: center
 ![](images/modelofinal.png)
 
 ---
-class: center, invert, middle
+class: invert, middle
 
+.center[
 # ¡Muchas gracias!
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="xaringan_custom/macros.js"></script>
 <script>var slideshow = remark.create({
+"slideNumberFormat": "%current%/%total%",
+"ratio": "16:9",
 "highlightStyle": "github",
 "highlightLines": true,
 "countIncrementalSlides": false

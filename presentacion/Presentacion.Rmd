@@ -5,9 +5,11 @@ author: ""
 date: " "
 output:
   xaringan::moon_reader:
-    css: ["xaringan_custom/xaringan-themer.css","xaringan_custom/progress-bar.css","https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"]
+    css: ["xaringan_custom/xaringan-themer.css"]
     lib_dir: libs
     nature:
+      slideNumberFormat: "%current%/%total%"
+      ratio: '16:9'
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -15,6 +17,15 @@ output:
     seal: false # esto omite title slide automática
 ---
 class: slideInRight, middle, inverse
+
+```{r xaringanExtra, include=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css"))
+# xaringanExtra::use_share_again()
+# xaringanExtra::use_scribble()
+xaringanExtra::use_progress_bar(color = "red", location = "top", height = "100em")
+
+```
+
 
 # __Desigualdad, familia y protesta__
 
@@ -30,6 +41,11 @@ class: slideInRight, middle, inverse
 * Juan Carlos Castillo, Coinvestigador 
 * Julio Iturra, Coordinador
 * Martín Venegas, Ayudante de investigación] 
+
+---
+
+layout: true
+class: animated, fadeIn
 
 ---
 class: slideInRight, middle, inverse
@@ -185,31 +201,29 @@ class: slideInRight, middle, inverse
 * Ecuaciones de Senderos Estructurales (SEM): Permite evaluar la relación entre constructos latentes
 
 ---
-
 class: slideInRight, middle, inverse
+
 ***
-# Resultados:
+# Resultados
 ***
 ---
-# Descriptivos
+.center[
+![:scale 75%](images/Plot-lik-trabajoduro.png)
 
-![:scale 80%](images/Plot-lik-trabajoduro.png)
-
-
+]
 ---
 # Bivariado
-
+.center[
 ![:scale 80%](images/Plot-lik-getahead.png)
-
+]
 
 ---
 # Correlaciones
 
+.center[
 ![](images/corr-alternativa.PNG)
-
+]
 ---
-class: center
-# Modelo
 
 ![:scale 90%](images/modelosem.png)
 
@@ -228,6 +242,8 @@ $n$=491 $\chi^2$ $(gl)$=22.056 (12), $p-value$ = 0.037, $CFI$ = 0.992, $RMSEA$ =
 ![](images/modelofinal.png)
 
 ---
-class: center, invert, middle
+class: invert, middle
 
+.center[
 # ¡Muchas gracias!
+]
